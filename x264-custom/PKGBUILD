@@ -1,0 +1,35 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+
+pkgname=x264-custom
+pkgver=2538
+pkgrel=2
+pkgdesc="Library for encoding H264/AVC video streams"
+arch=('x86_64')
+url="http://ffmpeg.org"
+license=('GPL')
+depends=('ffmpeg')
+makedepends=('yasm')
+source=("https://github.com/msg7086/x264_tMod/archive/0.147.2538+2+39.tar.gz"
+        sample.mkv)
+md5sums=('07320e51d34c0f06d59fbcc8482f826e'
+         '22ac885806a8a8a99961cab78cccf593')
+
+package() {
+  HOST=x86_64-w64-mingw32
+  export CFLAGS="-march=core2 -Ofast -pipe"
+  cd ${srcdir}/x264*
+  cp ${srcdir}/sample.mkv ./
+  mkdir -p ${pkgdir}/usr/bin
+
+  ./configure --enable-static --host=$HOST \
+    --enable-win32thread --disable-interlaced
+  sed -i "s/0+.*\[/$pkgver tMod \[/" x264_config.h
+  make fprofiled VIDS=sample.mkv
+  install -m755 x264.exe ${pkgdir}/usr/bin/
+
+  ./configure --enable-static --host=$HOST \
+    --enable-win32thread --disable-interlaced --bit-depth=10
+  sed -i "s/0+.*\[/$pkgver tMod \[/" x264_config.h
+  make fprofiled VIDS=sample.mkv
+  install -m755 x264.exe ${pkgdir}/usr/bin/x264-10.exe
+}
