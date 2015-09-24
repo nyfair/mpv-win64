@@ -13,13 +13,13 @@ md5sums=('ffb3971cc96eccaf2de202f621fd415f')
 
 build() {
   cd "rustc-$pkgver"
-  ./configure --prefix=/usr --release-channel=stable
+  ./configure --prefix=/usr --disable-docs --release-channel=stable
   make
 }
 
 package() {
   cd "rustc-$pkgver"
   sed -i "s/\"libiconv.a\",//" src/etc/make-win-dist.py
-  make DESTDIR="$pkgdir" install
+  make DESTDIR="${pkgdir}" install
   rm -f $pkgdir/usr/bin/lib*.dll $pkgdir/usr/bin/rustlib/x86_64-pc-windows-gnu/lib/*.dll
 }
