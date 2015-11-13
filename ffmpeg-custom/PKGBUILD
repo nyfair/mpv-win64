@@ -1,14 +1,14 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 
 pkgname=ffmpeg-custom
-pkgver=2.8
+pkgver=2.8.2
 pkgrel=1
 pkgdesc="Complete and free Internet live audio and video solution"
 _lamever=3.99.5
 _oggver=1.3.2
 _vorbisver=1.3.5
 _fdkver=0.1.4
-_opusver=1.1.1-beta
+_opusver=1.1.1-rc
 arch=('x86_64')
 url="http://ffmpeg.org"
 provides=('ffmpeg')
@@ -21,13 +21,7 @@ source=("http://downloads.sourceforge.net/lame/lame-$_lamever.tar.gz"
         "http://downloads.xiph.org/releases/opus/opus-$_opusver.tar.gz"
         "http://ffmpeg.org/releases/ffmpeg-$pkgver.tar.bz2"
         extra.7z)
-md5sums=('84835b313d4a8b68f5349816d33e07ce'
-         '5c3a34309d8b98640827e5d0991a4015'
-         '2645f282bf98720dfa972993559c2925'
-         'e274a7d7f6cd92c71ec5c78e4dc9f8b7'
-         '95896f0bc0dd886c3a511332e4c45b64'
-         '5eb3839e23c9ca396fabd0ebbe293ea2'
-         '1c46fb8e34b347e0d4c26de4bddabbe0')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   HOST=x86_64-w64-mingw32
