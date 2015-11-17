@@ -21,12 +21,12 @@ package() {
   mkdir -p ${pkgdir}/usr/bin
 
   ./configure --enable-static --host=$HOST --disable-interlaced
-  sed -i "s/0+.*\[/$pkgver tMod \[/" x264_config.h
+  sed -i "s/0+.*\[/$pkgver \[/" x264_config.h
   make fprofiled VIDS=sample.mkv
   install -m755 x264.exe ${pkgdir}/usr/bin/
 
   ./configure --enable-static --host=$HOST --disable-interlaced --bit-depth=10
-  sed -i "s/0+.*\[/$pkgver tMod \[/" x264_config.h
+  sed -i "s/0+.*\[/$pkgver \[/" x264_config.h
   make fprofiled VIDS=sample.mkv
   install -m755 x264.exe ${pkgdir}/usr/bin/x264-10.exe
 }
