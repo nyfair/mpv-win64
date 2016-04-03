@@ -2,14 +2,14 @@
 
 pkgname=mingw-w64-dgn
 pkgver=5.3
-pkgrel=1
+pkgrel=2
 pkgdesc="GCC for the MinGW-w64"
 arch=('x86_64')
 url="http://www.drangon.org/mingw/"
 provides=('gcc' 'binutils' 'cloog' 'isl' 'mpc' 'yasm' 'gdb')
 license=('GPL')
 options=('!strip')
-source=("http://downloads.sourceforge.net/mingw-w64-dgn/mingw-w64/mingw-w64-bin-x86_64-20151206.7z")
+source=("http://downloads.sourceforge.net/mingw-w64-dgn/mingw-w64/mingw-w64-bin-x86_64-20160320.7z")
 md5sums=('SKIP')
 
 package() {
