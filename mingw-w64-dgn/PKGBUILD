@@ -1,15 +1,16 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 
 pkgname=mingw-w64-dgn
-pkgver=5.3
-pkgrel=2
+pkgver=6.2
+pkgrel=1
+_pkgdate=20160819
 pkgdesc="GCC for the MinGW-w64"
 arch=('x86_64')
 url="http://www.drangon.org/mingw/"
 provides=('gcc' 'binutils' 'cloog' 'isl' 'mpc' 'yasm' 'gdb')
 license=('GPL')
 options=('!strip')
-source=("http://downloads.sourceforge.net/mingw-w64-dgn/mingw-w64/mingw-w64-bin-x86_64-20160320.7z")
+source=("http://downloads.sourceforge.net/mingw-w64-dgn/mingw-w64/mingw-w64-bin-x86_64-$_pkgdate.7z")
 md5sums=('SKIP')
 
 package() {
