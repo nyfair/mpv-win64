@@ -1,14 +1,14 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 
 pkgname=ffmpeg-custom
-pkgver=3.2.4
+pkgver=3.3.1
 pkgrel=1
 pkgdesc="Complete and free Internet live audio and video solution"
 _lamever=3.99.5
 _oggver=1.3.2
 _vorbisver=1.3.5
 _fdkver=0.1.5
-_opusver=1.1.4
+_opusver=1.2-beta
 arch=('x86_64')
 url="http://ffmpeg.org"
 provides=('ffmpeg')
