@@ -1,27 +1,21 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 
 pkgname=ffmpeg-custom
-pkgver=3.3.1
+pkgver=3.4
 pkgrel=1
 pkgdesc="Complete and free Internet live audio and video solution"
-_lamever=3.99.5
-_oggver=1.3.2
-_vorbisver=1.3.5
+_lamever=3.100
 _fdkver=0.1.5
-_opusver=1.2-beta
 arch=('x86_64')
 url="http://ffmpeg.org"
 provides=('ffmpeg')
 makedepends=('yasm')
 license=('LGPL')
 source=("http://downloads.sourceforge.net/lame/lame-$_lamever.tar.gz"
-        "http://downloads.xiph.org/releases/ogg/libogg-$_oggver.tar.xz"
-        "http://www.geocities.jp/aoyoume/aotuv/source_code/libvorbis-aotuv_b6.03_2015.tar.bz2"
         "http://downloads.sourceforge.net/opencore-amr/fdk-aac/fdk-aac-$_fdkver.tar.gz"
-        "http://downloads.xiph.org/releases/opus/opus-$_opusver.tar.gz"
         "http://ffmpeg.org/releases/ffmpeg-$pkgver.tar.xz"
         extra.7z)
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   HOST=x86_64-w64-mingw32
@@ -36,39 +30,23 @@ build() {
   ./configure ${CHOST} prefix=${TMP} --disable-shared
   CFLAGS="-msse2 ${CFLAGS}" make install
 
-  cd "${srcdir}/libogg-$_oggver/"
-  ./configure ${CHOST} prefix=${TMP} --disable-shared
-  make install
-
-  cd "${srcdir}/aotuv-b6.03_20110424-20150808"
-  ./configure ${CHOST} prefix=${TMP} --disable-shared --disable-docs --disable-examples
-  CFLAGS="-I${TMP}/include ${CFLAGS}" LDFLAGS="-L${TMP}/lib ${LDFLAGS}" make install
-
   cd "${srcdir}/fdk-aac-$_fdkver/"
   ./configure ${CHOST} prefix=${TMP} --disable-shared CXXFLAGS="-Wno-narrowing ${CXXFLAGS}"
-  make install
-
-  cd "${srcdir}/opus-$_opusver/"
-  sed -i "s/ __declspec(dllexport)//" include/opus_defines.h
-  ./configure ${CHOST} prefix=${TMP} --disable-shared
   make install
 
   unset CFLAGS
   cd "${srcdir}/ffmpeg-$pkgver/"
   cp -r ${srcdir}/CL ${TMP}/include
   cp ${srcdir}/libOpenCL.a ${TMP}/lib/
-  sed -i "s/require_pkg_config opus.*/require opus opus\/opus_multistream.h opus_multistream_decoder_create -lopus/" configure
-  ./configure prefix=/usr --extra-cflags="-I${TMP}/include -I${TMP}/include/opus ${FLAGS}" \
+  ./configure prefix=/usr --extra-cflags="-I${TMP}/include ${FLAGS}" \
     --extra-ldflags="-L${TMP}/lib ${LDFLAGS}" --target-os=mingw32 --arch=x86_64 --disable-debug \
     --disable-stripping --disable-static --enable-shared --disable-doc \
     --enable-gpl --enable-version3 --enable-nonfree --enable-opencl \
     --disable-ffplay --disable-ffprobe --disable-ffserver --disable-avdevice \
-    --enable-libvorbis --enable-libmp3lame --enable-libfdk_aac --enable-libopus \
-    --disable-encoders --enable-encoder=rawvideo \
+    --enable-libmp3lame --enable-libfdk_aac --disable-encoders \
+    --enable-encoder=rawvideo --enable-encoder=flac --enable-encoder=libmp3lame \
     --enable-encoder=pcm_s8 --enable-encoder=pcm_s16le --enable-encoder=pcm_s24le \
-    --enable-encoder=pcm_s32le --enable-encoder=pcm_f32le \
-    --enable-encoder=flac --enable-encoder=libvorbis --enable-encoder=libmp3lame \
-    --enable-encoder=libfdk_aac --enable-encoder=libopus
+    --enable-encoder=pcm_s32le --enable-encoder=pcm_f32le  --enable-encoder=libfdk_aac
   make
 }
 
