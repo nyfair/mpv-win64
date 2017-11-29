@@ -32,25 +32,25 @@ build() {
   export CFLAGS=${FLAGS}
   export CXXFLAGS=${FLAGS}
 
-  # cd "${srcdir}/lame-$_lamever/"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared
-  # CFLAGS="-msse2 ${CFLAGS}" make install
+  cd "${srcdir}/lame-$_lamever/"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared
+  CFLAGS="-msse2 ${CFLAGS}" make install
 
-  # cd "${srcdir}/libogg-$_oggver/"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared
-  # make install
+  cd "${srcdir}/libogg-$_oggver/"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared
+  make install
 
-  # cd "${srcdir}/aotuv-b6.03_20110424-20150808"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared --disable-docs --disable-examples
-  # CFLAGS="-I${TMP}/include ${CFLAGS}" LDFLAGS="-L${TMP}/lib ${LDFLAGS}" make install
+  cd "${srcdir}/aotuv-b6.03_20110424-20150808"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared --disable-docs --disable-examples
+  CFLAGS="-I${TMP}/include ${CFLAGS}" LDFLAGS="-L${TMP}/lib ${LDFLAGS}" make install
 
-  # cd "${srcdir}/fdk-aac-$_fdkver/"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared CXXFLAGS="-Wno-narrowing ${CXXFLAGS}"
-  # make install
+  cd "${srcdir}/fdk-aac-$_fdkver/"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared CXXFLAGS="-Wno-narrowing ${CXXFLAGS}"
+  make install
 
-  # cd "${srcdir}/opus-$_opusver/"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared
-  # make install
+  cd "${srcdir}/opus-$_opusver/"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared
+  make install
 
   unset CFLAGS
   cd "${srcdir}/ffmpeg-$pkgver/"
