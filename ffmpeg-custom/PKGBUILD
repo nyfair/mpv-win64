@@ -30,21 +30,21 @@ build() {
   export CXXFLAGS=${FLAGS}
   export PKG_CONFIG_PATH=${TMP}/lib/pkgconfig
 
-  # cd "${srcdir}/lame-$_lamever/"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared
-  # CFLAGS="-msse2 ${CFLAGS}" make install
+  cd "${srcdir}/lame-$_lamever/"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared
+  CFLAGS="-msse2 ${CFLAGS}" make install
 
-  # cd "${srcdir}/libogg-$_oggver/"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared
-  # make install
+  cd "${srcdir}/libogg-$_oggver/"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared
+  make install
 
-  # cd "${srcdir}/vorbis_aotuv-beta6.03-2018"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared --disable-docs --disable-examples
-  # CFLAGS="-I${TMP}/include ${CFLAGS}" LDFLAGS="-L${TMP}/lib ${LDFLAGS}" make install
+  cd "${srcdir}/vorbis_aotuv-beta6.03-2018"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared --disable-docs --disable-examples
+  CFLAGS="-I${TMP}/include ${CFLAGS}" LDFLAGS="-L${TMP}/lib ${LDFLAGS}" make install
 
-  # cd "${srcdir}/opus-$_opusver/"
-  # ./configure ${CHOST} prefix=${TMP} --disable-shared
-  # make install
+  cd "${srcdir}/opus-$_opusver/"
+  ./configure ${CHOST} prefix=${TMP} --disable-shared
+  make install
 
   unset CFLAGS
   cd "${srcdir}/ffmpeg-$pkgver/"
