@@ -50,7 +50,7 @@ build() {
   CFLAGS="-I${TMP}/include ${CFLAGS}" LDFLAGS="-L${TMP}/lib ${LDFLAGS}" make install
 
   cd "${srcdir}/opus-$_opusver/"
-  ./configure ${CHOST} prefix=${TMP} --disable-shared
+  ./configure ${CHOST} prefix=${TMP} --disable-shared --disable-doc --disable-extra-programs
   make install
 
   unset CFLAGS
@@ -61,8 +61,9 @@ build() {
     --enable-gpl --enable-version3 --enable-nonfree \
     --disable-ffplay --disable-ffprobe --disable-avdevice \
     --enable-libmp3lame --enable-libvorbis --enable-libopus \
-    --disable-decoder=libvorbis --disable-decoder=libopus
-    make
+    --disable-decoder=libvorbis --disable-decoder=libopus || true
+  cat ffbuild/config.log
+  make
 }
 
 package() {

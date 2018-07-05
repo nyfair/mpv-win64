@@ -1,0 +1,27 @@
+image: Visual Studio 2017
+
+install:
+  - dir C:\mingw-w64
+  - C:\msys64\usr\bin\pacman -S --noconfirm yasm
+  - curl "https://www.sourceforge.net/projects/mingw-w64/files/Toolchains targetting Win64/Personal Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z" -L > mingw64.7z
+  - rd /s /q C:\msys64\mingw64
+  - 7z x mingw64.7z -oC:\msys64
+
+before_deploy:
+  - C:\msys64\usr\bin\bash -lc 'cd /c/projects/msys2-packages/ffmpeg-custom; PATH=/mingw64/bin:$PATH makepkg'
+  - ps: Get-ChildItem C:\projects\msys2-packages\ffmpeg-custom\*pkg*.xz | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+
+deploy:
+  artifact: /.*\.xz/
+  auth_token:
+    secure: J1DFsRUBaJKZ2HqHKOQEA427FUsKo6rDTxtxyUwARP7k0Ac5SgX1qn77+LYXdwk6
+  description: ''
+  on:
+    appveyor_repo_tag: true
+  provider: GitHub
+
+branches:
+  only:
+    - latest
+
+build: false
