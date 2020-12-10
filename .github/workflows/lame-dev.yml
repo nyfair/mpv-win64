@@ -1,0 +1,34 @@
+name: lame-dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: D:\m64-102
+        key: m64-102
+    - name: Setup Toolchain
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        curl -OL http://msystem.waw.pl/x265/mingw-gcc102-20200925.7z
+        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
+    - name: Prepare
+      run: |
+        git config --global core.autocrlf false
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        C:\msys64\usr\bin\bash -lc 'export PATH=/usr/local/bin:/usr/bin:/opt/bin:/d/m64-102/bin; cd /d/a/MSYS2-packages/MSYS2-packages/lame-dev; makepkg'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: lame-dev/*pkg.tar*
+        tag: dev
+        overwrite: true
+        file_glob: true
