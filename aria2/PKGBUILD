@@ -29,6 +29,7 @@ build() {
 }
 
 package() {
+  export PKGEXT='.pkg.tar.xz'
   cd $srcdir/aria2-$pkgver
   mkdir -p $pkgdir/opt/bin
   mv src/aria2c.exe $pkgdir/opt/bin

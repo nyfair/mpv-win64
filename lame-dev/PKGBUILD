@@ -11,12 +11,12 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/lame-$pkgver
-  ./configure prefix=/usr --disable-shared --enable-nasm --disable-frontend
+  ./configure prefix=/opt --disable-shared --enable-nasm --disable-frontend
   CFLAGS="-msse2 ${CFLAGS}" make
 }
 
 package() {
   cd $srcdir/lame-$pkgver
   make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/usr/share
+  rm -rf $pkgdir/opt/share
 }
