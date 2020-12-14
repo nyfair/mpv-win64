@@ -1,10 +1,11 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(ffmpeg-devel ffmpeg)
+pkgname=(ffmpeg-dev ffmpeg)
 pkgver=4.3.1
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
+makedepends=('yasm' 'lame-dev' 'libvorbis_aotuv-dev' 'opus-dev' 'ffnvcodec-dev' 'vapoursynth-dev')
 license=('LGPL')
 source=("http://ffmpeg.org/releases/ffmpeg-$pkgver.tar.xz")
 md5sums=('SKIP')
@@ -15,17 +16,18 @@ build() {
          --disable-ffplay --disable-ffprobe --disable-avdevice --enable-shared"
 }
 
-package_ffmpeg-devel() {
+package_ffmpeg-dev() {
   cd $srcdir/ffmpeg-$pkgver
-  ./configure prefix=/opt ${CARGS} \
+  ./configure prefix=/opt $CARGS \
     --disable-mediafoundation --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
-    --disable-encoder=opus --disable-encoder=vorbis
+    --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth
   make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/opt/bin ${pkgdir}/opt/share $pkgdir/opt/lib/*.def
+  rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
 
 package_ffmpeg() {
+  depends=('vapoursynth')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/ffmpeg-$pkgver
   make DESTDIR=$pkgdir install

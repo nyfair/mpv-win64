@@ -31,8 +31,10 @@ jobs:
         C:\msys64\usr\bin\bash -lc 'pacman -S yasm --noconfirm'
         curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/libogg-dev-1.3.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/libvorbis-aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/opus-dev-1.3.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/ffnvcodec-dev-11.0.10.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/vapoursynth-dev-52-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/MSYS2-packages/MSYS2-packages/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/MSYS2-packages/MSYS2-packages/ffmpeg; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
