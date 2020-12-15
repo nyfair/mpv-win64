@@ -28,7 +28,7 @@ jobs:
         MSYSTEM: MINGW64
       run: |
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/MSYS2-packages/MSYS2-packages/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:

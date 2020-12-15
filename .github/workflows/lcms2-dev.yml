@@ -1,4 +1,4 @@
-name: aria2
+name: lcms2-dev
 
 on:
   workflow_dispatch:
@@ -28,12 +28,12 @@ jobs:
         MSYSTEM: MINGW64
       run: |
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/aria2; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: aria2/*pkg*.xz
-        tag: latest
+        file: lcms2-dev/*.zst
+        tag: dev
         overwrite: true
         file_glob: true

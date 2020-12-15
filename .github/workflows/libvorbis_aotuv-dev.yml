@@ -27,10 +27,10 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: MINGW64
       run: |
-        curl -OL https://github.com/nyfair/MSYS2-packages/releases/download/dev/libogg-dev-1.3.4-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/MSYS2-packages/MSYS2-packages/*.zst --noconfirm"
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/libogg-dev-1.3.4-1-x86_64.pkg.tar.zst
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/MSYS2-packages/MSYS2-packages/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
