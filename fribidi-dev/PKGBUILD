@@ -1,0 +1,27 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=fribidi-dev
+pkgver=1.0.10
+pkgrel=1
+pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
+arch=('x86_64')
+url="https://github.com/fribidi/fribidi/"
+license=('LGPL')
+source=("https://github.com/fribidi/fribidi/archive/v$pkgver.tar.gz")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/fribidi-$pkgver
+  sed -i "s/libfribidi/libfribidi,extra_cflags:'-DFRIBIDI_LIB_STATIC'/" meson.build
+  mkdir work
+  $MESON . work --prefix=/opt --buildtype=release --default-library=static \
+    -Dcpp_args='-DFRIBIDI_LIB_STATIC' -Ddocs=false -Dbin=false -Dtests=false
+  cd work
+  $NINJA
+}
+
+package() {
+  cd $srcdir/fribidi-$pkgver/work
+  DESTDIR=$pkgdir $NINJA install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}

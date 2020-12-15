@@ -12,7 +12,6 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/aria2-$pkgver
   patch -p1 -i ../../aria2.patch
-  # autoreconf -ifv
   ./configure \
     --host=x86_64-w64-mingw32 \
     --without-included-gettext \
