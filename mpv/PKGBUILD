@@ -5,6 +5,7 @@ pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
+makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-dev' 'luajit-dev' 'ffnvcodec-dev' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'libass-dev')
 license=('GPL3')
 source=("https://github.com/mpv-player/mpv/archive/v$pkgver.tar.gz")
 options=(!strip)
@@ -12,13 +13,14 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv-$pkgver
-  # python bootstrap.py
-  # CC=gcc.exe python waf configure --prefix=/opt --disable-iconv \
-  #   --enable-lua --enable-vapoursynth
-  # python waf build
+  python bootstrap.py
+  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv \
+    --enable-lua --enable-vapoursynth
+  python waf build
 }
 
 package() {
+  depends=('ffmpeg' 'luajit' 'vapoursynth')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/mpv-$pkgver/build
   mkdir -p $pkgdir/opt/bin/portable_config

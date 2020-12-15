@@ -7,6 +7,7 @@ arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
 source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z")
+options=(!strip)
 md5sums=('SKIP')
 
 build() {
