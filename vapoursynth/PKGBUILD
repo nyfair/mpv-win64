@@ -1,5 +1,5 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(vapoursynth-dev vapoursynth)
+pkgname=(vapoursynth-dev vapoursynth-plugin-coreextra vapoursynth)
 pkgver=52
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
@@ -14,8 +14,6 @@ build() {
   cd $srcdir
   rm *7z* con* ms* vc* MANIFEST* setup.py vsrepo.py
   rm -rf doc
-  rm vapoursynth64/coreplugins/avisource.dll
-  rm vapoursynth64/coreplugins/libimwri.dll
   rm vapoursynth64/plugins/.keep
 }
 
@@ -30,9 +28,22 @@ package_vapoursynth-dev() {
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
 }
 
+package_vapoursynth-plugin-coreextra() {
+  depends=('vapoursynth')
+  export PKGEXT='.pkg.tar.xz'
+  cd $srcdir
+  mkdir -p $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv *.exe $pkgdir/opt/bin
+  mv VSVFW.dll $pkgdir/opt/bin
+  mv vapoursynth64/coreplugins/avisource.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv vapoursynth64/coreplugins/AvsCompat.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv vapoursynth64/coreplugins/libhistogram.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv vapoursynth64/coreplugins/libimwri.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv vapoursynth64/coreplugins/libsubtext.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
+}
+
 package_vapoursynth() {
   optdepends=('python-embed>=3.8' 'python-embed<3.9')
-  export PKGEXT='.pkg.tar.xz'
   rm -rf $srcdir/sdk
   mkdir $pkgdir/opt
   mv $srcdir $pkgdir/opt/bin

@@ -1,0 +1,28 @@
+name: package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Package
+      run: |
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/ffmpeg-4.3.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/vapoursynth-52-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/mpv-0.33.0-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        7z a All-in-One-MPV-withoutPython.7z C:\msys64\opt\bin\*
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/python-embed-3.8.6-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/python* --noconfirm"
+        7z a All-in-One-MPV.7z C:\msys64\opt\bin\*
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: All*.7z
+        tag: latest
+        overwrite: true
+        file_glob: true

@@ -24,6 +24,5 @@ package() {
   cd $srcdir/mpv-$pkgver/build
   mkdir -p $pkgdir/opt/bin/portable_config
   strip mpv*
-  mv mpv.com $pkgdir/opt/bin
-  mv mpv.exe $pkgdir/opt/bin
+  mv mpv.* $pkgdir/opt/bin
 }
