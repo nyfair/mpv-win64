@@ -30,7 +30,7 @@ jobs:
         C:\msys64\usr\bin\bash -lc 'pacman -S nasm --noconfirm'
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/freetype2-dev-2.10.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/fribidi-dev-1.0.10-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/harfbuzz-dev-2.7.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/harfbuzz-dev-2.7.4-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'

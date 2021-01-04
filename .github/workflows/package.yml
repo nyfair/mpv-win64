@@ -16,9 +16,11 @@ jobs:
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/mpv-0.33.0-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-withoutPython-latest.7z C:\msys64\opt\bin\*
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/python-embed-3.8.6-1-x86_64.pkg.tar.xz
+        copy All-in-One-MPV-withoutPython-latest.7z All-in-One-MPV-withoutPython-${date}.7z
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/python-embed-3.8.7-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/python* --noconfirm"
         7z a All-in-One-MPV-latest.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-latest.7z All-in-One-MPV-${date}.7z
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
