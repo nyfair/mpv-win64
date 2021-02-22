@@ -38,9 +38,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
-    - name: Verbose
-      run: |
-        C:\msys64\usr\bin\bash -lc "cd /d/a/mpv-win64/mpv-win64/ffmpeg; cat src/ffmpeg-4.3.1/ffbuild/config.log"
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
