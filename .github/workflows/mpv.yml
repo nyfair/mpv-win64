@@ -31,10 +31,10 @@ jobs:
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/ffmpeg-dev-4.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/ffnvcodec-dev-11.0.10.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/vapoursynth-dev-52-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/vapoursynth-dev-53-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/freetype2-dev-2.10.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/fribidi-dev-1.0.10-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/harfbuzz-dev-2.7.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/harfbuzz-dev-2.8.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/libass-dev-0.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"

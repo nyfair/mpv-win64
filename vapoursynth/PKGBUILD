@@ -1,12 +1,12 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(vapoursynth-dev vapoursynth-plugin-coreextra vapoursynth)
-pkgver=52
+pkgver=53
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
-source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z")
+source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver-RC1/VapourSynth64-Portable-R$pkgver-RC1.7z")
 options=(!strip)
 md5sums=('SKIP')
 
@@ -43,7 +43,7 @@ package_vapoursynth-plugin-coreextra() {
 }
 
 package_vapoursynth() {
-  optdepends=('python-embed>=3.8' 'python-embed<3.9')
+  optdepends=('python-embed>=3.9')
   rm -rf $srcdir/sdk
   mkdir $pkgdir/opt
   mv $srcdir $pkgdir/opt/bin
