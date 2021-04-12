@@ -10,12 +10,12 @@ jobs:
     - uses: actions/cache@v2
       id: cache
       with:
-        path: D:\m64-102
-        key: m64-102
+        path: D:\m64-103
+        key: m64-103
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        curl -OL http://msystem.waw.pl/x265/mingw-gcc102-20200925.7z
+        curl -OL http://msystem.waw.pl/x265/mingw-gcc103-20210408.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -28,7 +28,7 @@ jobs:
         MSYSTEM: MINGW64
       run: |
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/d/m64-102/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/d/m64-103/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:

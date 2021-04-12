@@ -14,7 +14,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv-$pkgver
   python bootstrap.py
-  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv
+  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build
   python waf build
 }
 

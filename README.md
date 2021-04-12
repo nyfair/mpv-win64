@@ -12,7 +12,7 @@ All my builds are portable and compiled with VapourSynth support, these plugins 
 <https://mpv.io/manual/>  
 All your configuration can be saved within the ***portable_config*** subdirectory
 
-## Useful Links
+## Awesome Links
 - [User Scripts from Official](https://github.com/mpv-player/mpv/wiki/User-Scripts)
 - [Default MPV Setting](https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf)
 - [Default MPV Key Binding](https://github.com/mpv-player/mpv/blob/master/etc/input.conf)
@@ -23,7 +23,7 @@ All your configuration can be saved within the ***portable_config*** subdirector
 ### VapourSynth Plugin
 - [SVP](https://www.svp-team.com) proprietary motion interpolation solution to produce hight frame rate video
 - [MVTools](https://github.com/dubhater/vapoursynth-mvtools) another motion interpolation plugin and it was open source
-- [FFMS2](https://github.com/FFMS/ffms2) useful video source library for multimedia editing
+- [FFMS2](https://github.com/FFMS/ffms2) video source library for multimedia editing
 ### Shader
 - [Anime4K](https://bloc97.github.io/Anime4K/)
 - [SSim/Krig](https://gist.github.com/igv)
@@ -52,7 +52,7 @@ I prefer to directly use these utilities for better control
 ### Build FFmpeg with dav1d for software av1 decoding
 AV1 is still not popular today, I suggest you to torture GPU instead of CPU
 ### Build FFmpeg with libfdk_aac for high quality AAC audio encoding
-Yes, fdk aak produce better aac than FFmpeg native. But it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
+Yes, fdk aak produce better aac than FFmpeg native, but it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
 ### Build MPV with fontconfig for POSIX-like system font configuration
 Fontconfig sucks in windows, and... do you really want to learn it?
 ### Build MPV with SPIR-V and libplacebo for Vulkan context
