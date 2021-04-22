@@ -2,7 +2,7 @@
 
 ## Installation
 Grab and extract the All-in-One archive from <https://github.com/nyfair/mpv-win64/releases/tag/latest>  
-You can also manually install these pacman-based package if you are using MSYS2  
+You can also manually install these pacman-based packages if you are using MSYS2  
 All my builds are portable and compiled with VapourSynth support, these plugins will have no effect if MPV can't find python environment
 
 ## Main project site:
@@ -10,7 +10,7 @@ All my builds are portable and compiled with VapourSynth support, these plugins 
 
 ## Configuration
 <https://mpv.io/manual/>  
-All your configuration can be saved within the ***portable_config*** subdirectory
+All your configurations can be saved within the ***portable_config*** subdirectory
 
 ## Awesome Links
 - [User Scripts from Official](https://github.com/mpv-player/mpv/wiki/User-Scripts)
@@ -31,12 +31,12 @@ All your configuration can be saved within the ***portable_config*** subdirector
 - [ACNet](https://github.com/TianZerL/ACNetGLSL/releases)
 
 ## How to Compile
-Forks this repo and build these library by Github Action  
+Forks this repo and build these packages by Github Action  
 **NOTICE**  
 Don't build it on your personal msys2 environment unless it was in sandbox, these shitty script will spoil your whole weekend!
 
 ## Detail
-The FFmpeg nad MPV library were build with the following library
+The FFmpeg and MPV library were built with the following library
 - lame: MP3 Audio Encoding
 - libogg/libvorbis-aotuv: Ogg Vorbis Audio Encoding
 - opus: Opus Audio Encoding
@@ -48,9 +48,7 @@ The FFmpeg nad MPV library were build with the following library
 
 ## TODO ???
 ### Build FFmpeg with x264/x265/libaom for video encoding
-I prefer to directly use these utilities for better control
-### Build FFmpeg with dav1d for software av1 decoding
-AV1 is still not popular today, I suggest you to torture GPU instead of CPU
+I prefer to directly use these utilities
 ### Build FFmpeg with libfdk_aac for high quality AAC audio encoding
 Yes, fdk aak produce better aac than FFmpeg native, but it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
 ### Build MPV with fontconfig for POSIX-like system font configuration

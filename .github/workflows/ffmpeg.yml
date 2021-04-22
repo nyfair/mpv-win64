@@ -33,7 +33,7 @@ jobs:
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/libogg-dev-1.3.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/opus-dev-1.3.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/ffnvcodec-dev-11.0.10.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/ffnvcodec-dev-11.0.10.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/vapoursynth-dev-53-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
