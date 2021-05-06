@@ -36,7 +36,7 @@ Forks this repo and build these packages by Github Action
 Don't build it on your personal msys2 environment unless it was in sandbox, these shitty script will spoil your whole weekend!
 
 ## Detail
-The FFmpeg and MPV library were built with the following library
+The FFmpeg and MPV library were built with the following libraries
 - lame: MP3 Audio Encoding
 - libogg/libvorbis-aotuv: Ogg Vorbis Audio Encoding
 - opus: Opus Audio Encoding
@@ -51,7 +51,7 @@ The FFmpeg and MPV library were built with the following library
 I prefer to directly use these utilities
 ### Build FFmpeg with libfdk_aac for high quality AAC audio encoding
 Yes, fdk aak produce better aac than FFmpeg native, but it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
-### Build MPV with fontconfig for POSIX-like system font configuration
+### Build libass with fontconfig for POSIX-like system font configuration
 Fontconfig sucks in windows, and... do you really want to learn it?
 ### Build MPV with SPIR-V and libplacebo for Vulkan context
-This is meaningful, but currently d3d11 context also works
+Hmm, currently d3d11 context also works

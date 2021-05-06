@@ -10,12 +10,12 @@ jobs:
     - uses: actions/cache@v2
       id: cache
       with:
-        path: D:\m64-103
-        key: m64-103
+        path: D:\m64-111
+        key: m64-111
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        curl -OL http://msystem.waw.pl/x265/mingw-gcc103-20210408.7z
+        curl -OL http://msystem.waw.pl/x265/mingw-gcc111-20210427.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -37,7 +37,7 @@ jobs:
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/vapoursynth-dev-53-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/m64-103/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/m64-111/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
