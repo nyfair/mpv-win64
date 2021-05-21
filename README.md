@@ -31,9 +31,9 @@ All your configurations can be saved within the ***portable_config*** subdirecto
 - [ACNet](https://github.com/TianZerL/ACNetGLSL/releases)
 
 ## How to Compile
-Forks this repo and build these packages by Github Action  
+Fork this repo and build these packages by Github Action  
 **NOTICE**  
-Don't build it on your personal msys2 environment unless it was in sandbox, these shitty script will spoil your whole weekend!
+Don't build it on your personal msys2 environment unless it was in sandbox, these shitty scripts will spoil your whole weekend!
 
 ## Detail
 The FFmpeg and MPV library were built with the following libraries
@@ -45,6 +45,8 @@ The FFmpeg and MPV library were built with the following libraries
 - libass/freetype2/fribidi/harfbuzz: Subtitle Support
 - luajit: Lua Plugin
 - vapoursynth: VapourSynth Plugin and VSS Video Source
+- shaderc/spirv/libplacebo: D3D11 & Vulkan Context
+- libbluray/libdvdnav/libdvdread/libdvdcss: Parsing BD/DVD
 
 ## TODO ???
 ### Build FFmpeg with x264/x265/libaom for video encoding
@@ -53,5 +55,3 @@ I prefer to directly use these utilities
 Yes, fdk aak produce better aac than FFmpeg native, but it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
 ### Build libass with fontconfig for POSIX-like system font configuration
 Fontconfig sucks in windows, and... do you really want to learn it?
-### Build MPV with SPIR-V and libplacebo for Vulkan context
-Hmm, currently d3d11 context also works
