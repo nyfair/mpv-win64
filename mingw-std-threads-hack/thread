@@ -1,0 +1,3 @@
+#pragma once
+#include "orig.thread.h"
+#include "mingw.thread.h"

@@ -1,0 +1,30 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=libplacebo-dev
+pkgver=3.120.3
+pkgrel=1
+pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
+arch=('x86_64')
+url="https://github.com/haasn/libplacebo/"
+makedepends=('mingw-w64-x86_64-meson' 'mingw-w64-x86_64-python-mako' 'lcms2-dev' 'vulkan-dev' 'shaderc-dev')
+license=('LGPL')
+source=("https://github.com/haasn/libplacebo/archive/v$pkgver.tar.gz")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libplacebo-$pkgver
+  curl -OL https://github.com/mpv-player/mpv/raw/master/osdep/win32/include/pthread.h
+  mv pthread.h src/
+  mkdir work
+  $MESON . work --prefix=/opt --buildtype=release --default-library=static \
+    -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
+  cd work
+  $NINJA
+}
+
+package() {
+  cd $srcdir/libplacebo-$pkgver/work
+  DESTDIR=$pkgdir $NINJA install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+  sed -i 's/ -pthread//g' $pkgdir/opt/lib/pkgconfig/*.pc
+}

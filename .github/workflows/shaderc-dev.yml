@@ -1,0 +1,48 @@
+name: shaderc-dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Setup Toolchain
+      run: |
+        echo "For some reason, gcc11 and c++11 thread on win32 model is not compatible"
+        curl -OL http://msystem.waw.pl/x265/mingw-gcc103-20210427.7z
+        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v2
+    - name: Hack Toolchain
+      run: |
+        cd D:/m64-103/include/c++/10.3.0
+        ren condition_variable orig.condition_variable.h
+        ren future orig.future.h
+        ren mutex orig.mutex.h
+        ren shared_mutex orig.shared_mutex.h
+        ren thread orig.thread.h
+        mv D:/a/mpv-win64/mpv-win64/mingw-std-threads-hack/* ./
+        curl -OL https://github.com/meganz/mingw-std-threads/archive/refs/heads/master.zip
+        &'C:\Program Files\7-Zip\7z.exe' x master.zip
+        mv mingw-std-threads-master/*.h ./
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: MINGW64
+        CMAKE: /64/bin/cmake
+      run: |
+        C:\msys64\usr\bin\bash -lc 'mv /usr/bin/python /tmp'
+        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/m64-103/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: shaderc-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true
