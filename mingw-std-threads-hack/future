@@ -1,3 +1,0 @@
-#pragma once
-#include "orig.future.h"
-#include "mingw.future.h"

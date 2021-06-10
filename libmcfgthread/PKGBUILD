@@ -1,0 +1,20 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=libmcfgthread
+pkgver=20210604
+pkgrel=1
+pkgdesc='MCF thread model'
+arch=('x86_64')
+url="https://gcc-mcf.lhmouse.com/"
+license=('custom')
+source=()
+md5sums=()
+
+build() {
+  cd $srcdir
+}
+
+package() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir/opt/bin
+  cp /d/ucrt64/bin/mcfgthread* /opt/bin
+}

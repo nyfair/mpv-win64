@@ -7,26 +7,14 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Setup Toolchain
-      run: |
-        echo "For some reason, gcc11 and c++11 thread on win32 model is not compatible"
-        curl -OL http://msystem.waw.pl/x265/mingw-gcc103-20210427.7z
-        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20210604_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
-    - name: Hack Toolchain
-      run: |
-        cd D:/m64-103/include/c++/10.3.0
-        ren condition_variable orig.condition_variable.h
-        ren future orig.future.h
-        ren mutex orig.mutex.h
-        ren shared_mutex orig.shared_mutex.h
-        ren thread orig.thread.h
-        mv D:/a/mpv-win64/mpv-win64/mingw-std-threads-hack/* ./
-        curl -OL https://github.com/meganz/mingw-std-threads/archive/refs/heads/master.zip
-        &'C:\Program Files\7-Zip\7z.exe' x master.zip
-        mv mingw-std-threads-master/*.h ./
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include

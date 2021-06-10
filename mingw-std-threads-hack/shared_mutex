@@ -1,3 +1,0 @@
-#pragma once
-#include "orig.shared_mutex.h"
-#include "mingw.shared_mutex.h"

@@ -1,3 +1,0 @@
-#pragma once
-#include "orig.condition_variable.h"
-#include "mingw.condition_variable.h"
