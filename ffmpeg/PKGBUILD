@@ -27,7 +27,7 @@ package_ffmpeg-dev() {
 }
 
 package_ffmpeg() {
-  depends=('vapoursynth')
+  depends=('vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/ffmpeg-$pkgver
   make DESTDIR=$pkgdir install

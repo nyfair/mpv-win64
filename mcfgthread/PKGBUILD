@@ -1,5 +1,5 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=libmcfgthread
+pkgname=mcfgthread
 pkgver=20210604
 pkgrel=1
 pkgdesc='MCF thread model'

@@ -1,4 +1,4 @@
-name: aria2
+name: toolchain
 
 on:
   workflow_dispatch:

@@ -22,7 +22,7 @@ build() {
 }
 
 package() {
-  depends=('ffmpeg' 'luajit' 'vapoursynth')
+  depends=('ffmpeg' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/mpv-$pkgver/build
   mkdir -p $pkgdir/opt/bin/portable_config

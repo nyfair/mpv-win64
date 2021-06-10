@@ -1,5 +1,5 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(vapoursynth-dev vapoursynth-plugin-coreextra vapoursynth)
+pkgname=(vapoursynth-dev vapoursynth-plugin-core-extra vapoursynth)
 pkgver=53
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
@@ -28,7 +28,7 @@ package_vapoursynth-dev() {
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
 }
 
-package_vapoursynth-plugin-coreextra() {
+package_vapoursynth-plugin-core-extra() {
   depends=('vapoursynth')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir

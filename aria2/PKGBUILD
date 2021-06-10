@@ -4,6 +4,7 @@ pkgver=1.35.0
 pkgrel=1
 pkgdesc='Download utility that supports HTTP(S), FTP, BitTorrent, and Metalink'
 arch=('x86_64')
+depends=('mcfgthread')
 url='http://aria2.sourceforge.net/'
 license=('GPL2')
 source=("https://github.com/aria2/aria2/releases/download/release-$pkgver/aria2-$pkgver.tar.xz")
