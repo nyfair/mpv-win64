@@ -14,56 +14,20 @@ jobs:
         key: mcf_20210604_11.1.1_x64-ucrt
     - name: Setup Toolchain
       run: |
+        rm -r D:\ucrt*
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20210604_11.1.1_x64-ucrt_13744cc4c0b1661d2f5169f4d5e2c45e8957f77b.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
-        cd D:\ucrt64
-        rm -R ssl
-        rm -R share
-        rm -R sbin
-        rm -R etc
-        rm -R libexec
-        md include2 lib2
-        rm bin/2to3*
-        rm bin/idle*
-        rm bin/py*
-
-        mv include/c++ include2
-        mv include/gdb include2
-        mv include/binutils/* include2
-        mv include/gnu* include2
-        mv include/zconf* include2
-        mv include/zlib* include2
-        mv include/mcfgthread include2
-
-        mv lib/gcc lib2
-        mv lib/binutils/* lib2
-        mv lib/libatomic.a lib2
-        mv lib/libquadmath.a lib2
-        mv lib/libssp.a lib2
-        mv lib/libssp_nonshared.a lib2
-        mv lib/libstdc++.a lib2
-        mv lib/libstdc++fs.a lib2
-        mv lib/libstdc++.dll.a-gdb.py lib2
-        mv lib/libsupc++.a lib2
-        mv lib/libz.a lib2
-        mv lib/libgcc_s.a lib2
-        mv lib/libmcfgthread.a lib2
-
-        rm -r include
-        rm -r lib
-        mv include2 include
-        mv lib2 lib
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
     - name: Build
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libmcfgthread; makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libmcfgthread/*pkg*.xz
+        file: mcfgthread/*pkg*.xz
         tag: latest
         overwrite: true
         file_glob: true

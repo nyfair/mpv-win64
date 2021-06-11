@@ -21,18 +21,14 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: MINGW64
-        CC: /d/ucrt64/bin/gcc.exe
-        CXX: /d/ucrt64/bin/g++.exe
-        MESON: /64/bin/meson
-        NINJA: /64/bin/ninja
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S mingw-w64-x86_64-meson mingw-w64-x86_64-python-mako --noconfirm'
+        pip install meson ninja mako
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/vulkan-dev-1.2.179-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/vulkan-dev-1.2.180-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/shaderc-dev-2021.0-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
