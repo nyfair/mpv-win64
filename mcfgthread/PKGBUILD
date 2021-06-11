@@ -6,9 +6,9 @@ pkgdesc='MCF thread model'
 arch=('x86_64')
 url="https://gcc-mcf.lhmouse.com/"
 license=('custom')
-source=()
+source=('0001-headers-add-AV1-support-to-dxva.h.patch')
 options=(!strip)
-md5sums=()
+md5sums=('SKIP')
 
 build() {
   cd /d/ucrt64
@@ -49,6 +49,10 @@ build() {
   rm -rf lib
   mv include2 include
   mv lib2 lib
+
+  rm x86_64-w64-mingw32/lib/*.dll.a
+  cd x86_64-w64-mingw32/include
+  patch -p3 -i $srcdir/0001-headers-add-AV1-support-to-dxva.h.patch
 }
 
 package() {
