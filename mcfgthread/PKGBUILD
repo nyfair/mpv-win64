@@ -1,14 +1,14 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=mcfgthread
-pkgver=20210604
+pkgver=20210621
 pkgrel=1
 pkgdesc='MCF thread model'
 arch=('x86_64')
 url="https://gcc-mcf.lhmouse.com/"
 license=('custom')
-source=('0001-headers-add-AV1-support-to-dxva.h.patch')
+source=()
 options=(!strip)
-md5sums=('SKIP')
+md5sums=()
 
 build() {
   cd /d/ucrt64
@@ -22,6 +22,7 @@ build() {
   rm bin/2to3*
   rm bin/idle*
   rm bin/py*
+  rm -rf x86_64-w64-mingw32/lib/*.dll.a
 
   mv include/c++ include2
   mv include/gdb include2
@@ -49,10 +50,6 @@ build() {
   rm -rf lib
   mv include2 include
   mv lib2 lib
-
-  rm x86_64-w64-mingw32/lib/*.dll.a
-  cd x86_64-w64-mingw32/include
-  patch -p3 -i $srcdir/0001-headers-add-AV1-support-to-dxva.h.patch
 }
 
 package() {
