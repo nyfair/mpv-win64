@@ -21,7 +21,7 @@ All your configurations can be saved within the ***portable_config*** subdirecto
 - [Play List Manager](https://github.com/jonniek/mpv-playlistmanager)
 - [MPV Thumbnail](https://github.com/TheAMM/mpv_thumbnail_script)
 ### VapourSynth Plugin
-- [SVP](https://www.svp-team.com) proprietary motion interpolation solution to produce hight frame rate video
+- [SVP](https://www.svp-team.com) proprietary motion interpolation solution to produce high frame rate video
 - [MVTools](https://github.com/dubhater/vapoursynth-mvtools) another motion interpolation plugin and it was open source
 - [FFMS2](https://github.com/FFMS/ffms2) video source library for multimedia editing
 ### Shader
