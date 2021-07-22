@@ -10,15 +10,15 @@ jobs:
     - name: Package
       run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/ffmpeg-4.4-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/vapoursynth-53-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/mpv-0.33.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/mcfgthread-20210621-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-4.4-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-53-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.33.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20210708-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-withoutPython-latest.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-withoutPython-latest.7z All-in-One-MPV-withoutPython-${date}.7z
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/latest/python-embed-3.9.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.9.5-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/python* --noconfirm"
         7z a All-in-One-MPV-latest.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-latest.7z All-in-One-MPV-${date}.7z

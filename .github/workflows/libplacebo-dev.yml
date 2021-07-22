@@ -11,7 +11,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210621_11.1.1_x64-ucrt
+        key: mcf_20210708_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -23,9 +23,9 @@ jobs:
         MSYSTEM: MINGW64
       run: |
         pip install meson ninja mako
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/vulkan-dev-1.2.180-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/nyfair/mpv-win64/releases/download/dev/shaderc-dev-2021.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.185-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.1-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
