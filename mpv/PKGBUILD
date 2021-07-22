@@ -26,6 +26,6 @@ package() {
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/mpv-$pkgver/build
   mkdir -p $pkgdir/opt/bin/portable_config
-  strip mpv*
+  strip mpv.*
   mv mpv.* $pkgdir/opt/bin
 }
