@@ -1,4 +1,4 @@
-name: mpv
+name: mpv-git
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
         MSYSTEM: MINGW64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -S yasm --noconfirm'
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-4.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-dev-4.5pre-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.0.10.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-54-1-x86_64.pkg.tar.zst
@@ -42,12 +42,12 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-3.120.3-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mpv/*pkg*.xz
-        tag: latest
+        tag: bleeding_edge
         overwrite: true
         file_glob: true

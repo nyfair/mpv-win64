@@ -1,4 +1,4 @@
-name: ffmpeg
+name: ffmpeg-git
 
 on:
   workflow_dispatch:
@@ -32,13 +32,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-54-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*pkg*.xz
-        tag: latest
+        tag: bleeding_edge
         overwrite: true
         file_glob: true
     - name: Upload Dev
@@ -46,6 +46,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*.zst
-        tag: dev
+        tag: bleeding_edge
         overwrite: true
         file_glob: true
