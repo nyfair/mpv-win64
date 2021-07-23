@@ -1,10 +1,11 @@
-name: batch-stable
+name: template
 
 on:
   workflow_dispatch:
 
 jobs:
   ffmpeg:
+    if: ${{ true }}
     needs: [lame, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
     runs-on: windows-latest
     steps:
@@ -52,6 +53,7 @@ jobs:
         file_glob: true
 
   ffnvcodec:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -81,6 +83,7 @@ jobs:
         file_glob: true
 
   freetype2:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -110,6 +113,7 @@ jobs:
         file_glob: true
 
   fribidi:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -140,6 +144,7 @@ jobs:
         file_glob: true
 
   harfbuzz:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -170,6 +175,7 @@ jobs:
         file_glob: true
 
   lame:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -200,6 +206,7 @@ jobs:
         file_glob: true
 
   lcms2:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -229,6 +236,7 @@ jobs:
         file_glob: true
 
   libass:
+    if: ${{ true }}
     needs: [freetype2, fribidi, harfbuzz]
     runs-on: windows-latest
     steps:
@@ -264,6 +272,7 @@ jobs:
         file_glob: true
 
   libbluray:
+    if: ${{ true }}
     needs: [freetype2]
     runs-on: windows-latest
     steps:
@@ -296,6 +305,7 @@ jobs:
         file_glob: true
 
   libdvdcss:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -325,6 +335,7 @@ jobs:
         file_glob: true
 
   libdvdnav:
+    if: ${{ true }}
     needs: [libdvdread]
     runs-on: windows-latest
     steps:
@@ -358,6 +369,7 @@ jobs:
         file_glob: true
 
   libdvdread:
+    if: ${{ true }}
     needs: [libdvdcss]
     runs-on: windows-latest
     steps:
@@ -390,6 +402,7 @@ jobs:
         file_glob: true
 
   libogg:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -419,6 +432,7 @@ jobs:
         file_glob: true
 
   libplacebo:
+    if: ${{ true }}
     needs: [lcms2, vulkan, shaderc]
     runs-on: windows-latest
     steps:
@@ -454,6 +468,7 @@ jobs:
         file_glob: true
 
   libvorbis_aotuv:
+    if: ${{ true }}
     needs: [libogg]
     runs-on: windows-latest
     steps:
@@ -486,6 +501,7 @@ jobs:
         file_glob: true
 
   luajit:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -523,6 +539,7 @@ jobs:
         file_glob: true
 
   mpv:
+    if: ${{ true }}
     needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdvdnav, libplacebo, spirv-cross]
     runs-on: windows-latest
     steps:
@@ -572,6 +589,7 @@ jobs:
         file_glob: true
 
   opus:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -601,6 +619,7 @@ jobs:
         file_glob: true
 
   package:
+    if: ${{ true }}
     runs-on: windows-latest
     needs: [mpv, python-embed]
     steps:
@@ -627,6 +646,7 @@ jobs:
         file_glob: true
 
   python-embed:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - name: Prepare
@@ -645,6 +665,7 @@ jobs:
         file_glob: true
 
   shaderc:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -676,6 +697,7 @@ jobs:
         file_glob: true
 
   spirv-cross:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -706,6 +728,7 @@ jobs:
         file_glob: true
 
   vapoursynth:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - name: Prepare
@@ -732,6 +755,7 @@ jobs:
         file_glob: true
 
   vulkan:
+    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
