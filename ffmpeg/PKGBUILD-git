@@ -7,7 +7,7 @@ arch=('x86_64')
 url="http://ffmpeg.org/"
 makedepends=('yasm' 'lame-dev' 'libvorbis_aotuv-dev' 'opus-dev' 'ffnvcodec-dev' 'vapoursynth-dev')
 license=('LGPL')
-source=("https://github.com/FFmpeg/FFmpeg/archive/refs/heads/master.zip")
+source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
 build() {
@@ -19,7 +19,7 @@ build() {
 
 package_ffmpeg-git-dev() {
   conflicts=('ffmpeg-dev')
-  cd $srcdir/FFmpeg-master
+  cd $srcdir/FFmpeg
   ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
     --disable-mediafoundation --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
@@ -32,7 +32,7 @@ package_ffmpeg-git() {
   conflicts=('ffmpeg')
   depends=('vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/FFmpeg-master
+  cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
 }

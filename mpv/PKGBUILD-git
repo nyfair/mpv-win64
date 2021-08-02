@@ -9,12 +9,12 @@ makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-git-dev' 'luajit-dev' 'ffnvcodec-d
               'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev' 'libplacebo-dev')
 conflicts=('mpv')
 license=('GPL3')
-source=("https://github.com/mpv-player/mpv/archive/refs/heads/master.zip")
+source=("git+https://github.com/mpv-player/mpv")
 options=(!strip)
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/mpv-master
+  cd $srcdir/mpv
   python bootstrap.py
   CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
   python waf build
@@ -23,7 +23,7 @@ build() {
 package() {
   depends=('ffmpeg-git' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/mpv-master/build
+  cd $srcdir/mpv/build
   mkdir -p $pkgdir/opt/bin/portable_config
   strip mpv.*
   mv mpv.* $pkgdir/opt/bin

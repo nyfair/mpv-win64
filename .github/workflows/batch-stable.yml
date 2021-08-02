@@ -1,4 +1,4 @@
-name: template
+name: batch-stable
 
 on:
   workflow_dispatch:
