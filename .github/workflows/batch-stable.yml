@@ -5,7 +5,6 @@ on:
 
 jobs:
   ffmpeg:
-    if: ${{ true }}
     needs: [lame, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
     runs-on: windows-latest
     steps:
@@ -13,17 +12,16 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
     - name: Build
-      continue-on-error: true
       env:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -S yasm --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
@@ -33,7 +31,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.0.10.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-54-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -53,14 +50,13 @@ jobs:
         file_glob: true
 
   ffnvcodec:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -69,9 +65,8 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -83,14 +78,13 @@ jobs:
         file_glob: true
 
   freetype2:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -99,9 +93,8 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -113,14 +106,13 @@ jobs:
         file_glob: true
 
   fribidi:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -129,10 +121,9 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -144,14 +135,13 @@ jobs:
         file_glob: true
 
   harfbuzz:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -160,10 +150,9 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -175,14 +164,13 @@ jobs:
         file_glob: true
 
   lame:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -191,10 +179,9 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -S nasm --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -206,14 +193,13 @@ jobs:
         file_glob: true
 
   lcms2:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -222,9 +208,8 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -236,7 +221,6 @@ jobs:
         file_glob: true
 
   libass:
-    if: ${{ true }}
     needs: [freetype2, fribidi, harfbuzz]
     runs-on: windows-latest
     steps:
@@ -244,7 +228,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -253,14 +237,13 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -S nasm --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.11.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.10-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-2.8.2-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -272,7 +255,6 @@ jobs:
         file_glob: true
 
   libbluray:
-    if: ${{ true }}
     needs: [freetype2]
     runs-on: windows-latest
     steps:
@@ -280,7 +262,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -289,11 +271,10 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.11.0-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -305,14 +286,13 @@ jobs:
         file_glob: true
 
   libdvdcss:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -321,9 +301,8 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -335,7 +314,6 @@ jobs:
         file_glob: true
 
   libdvdnav:
-    if: ${{ true }}
     needs: [libdvdread]
     runs-on: windows-latest
     steps:
@@ -343,7 +321,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -352,12 +330,11 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.2-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -369,7 +346,6 @@ jobs:
         file_glob: true
 
   libdvdread:
-    if: ${{ true }}
     needs: [libdvdcss]
     runs-on: windows-latest
     steps:
@@ -377,7 +353,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -386,11 +362,10 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -402,14 +377,13 @@ jobs:
         file_glob: true
 
   libogg:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -418,9 +392,8 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -432,7 +405,6 @@ jobs:
         file_glob: true
 
   libplacebo:
-    if: ${{ true }}
     needs: [lcms2, vulkan, shaderc]
     runs-on: windows-latest
     steps:
@@ -440,7 +412,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -449,14 +421,13 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         pip install meson ninja mako
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.185-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.186-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.1-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -468,7 +439,6 @@ jobs:
         file_glob: true
 
   libvorbis_aotuv:
-    if: ${{ true }}
     needs: [libogg]
     runs-on: windows-latest
     steps:
@@ -476,7 +446,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -485,11 +455,10 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -501,14 +470,13 @@ jobs:
         file_glob: true
 
   luajit:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -517,9 +485,8 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -539,7 +506,6 @@ jobs:
         file_glob: true
 
   mpv:
-    if: ${{ true }}
     needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdvdnav, libplacebo, spirv-cross]
     runs-on: windows-latest
     steps:
@@ -547,7 +513,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -556,7 +522,7 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -S yasm --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-4.4-1-x86_64.pkg.tar.zst
@@ -572,12 +538,11 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.185-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.186-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-3.120.3-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -589,14 +554,13 @@ jobs:
         file_glob: true
 
   opus:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -605,9 +569,8 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
+        MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -619,7 +582,6 @@ jobs:
         file_glob: true
 
   package:
-    if: ${{ true }}
     runs-on: windows-latest
     needs: [mpv, python-embed]
     steps:
@@ -630,12 +592,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-54-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.33.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20210708-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20210725-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.9.6-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/python* --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -646,7 +609,6 @@ jobs:
         file_glob: true
 
   python-embed:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - name: Prepare
@@ -665,14 +627,13 @@ jobs:
         file_glob: true
 
   shaderc:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -681,11 +642,10 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
-        CMAKE: /64/bin/cmake
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
       run: |
         C:\msys64\usr\bin\bash -lc 'mv /usr/bin/python* /tmp'
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -697,14 +657,13 @@ jobs:
         file_glob: true
 
   spirv-cross:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -713,10 +672,9 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
-        CMAKE: /64/bin/cmake
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
@@ -728,7 +686,6 @@ jobs:
         file_glob: true
 
   vapoursynth:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - name: Prepare
@@ -755,14 +712,13 @@ jobs:
         file_glob: true
 
   vulkan:
-    if: ${{ true }}
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20210708_11.1.1_x64-ucrt
+        key: mcf_20210725_11.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -771,10 +727,9 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: MINGW64
-        CMAKE: /64/bin/cmake
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'mv /mingw64 /64'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       uses: svenstaro/upload-release-action@v2

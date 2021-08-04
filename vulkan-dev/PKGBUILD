@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=vulkan-dev
-pkgver=1.2.185
+pkgver=1.2.186
 pkgrel=1
 pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
@@ -12,6 +12,9 @@ source=("https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v$pkgv
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
+  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
+  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
+  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
   cd $srcdir/Vulkan-Headers-$pkgver
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
@@ -22,9 +25,6 @@ build() {
   sed -i '/.data/d' loader/unknown_ext_chain_gas.S
   patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
-  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
-  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DENABLE_STATIC_LOADER=ON -DBUILD_TESTS=OFF
   $CMAKE --build .

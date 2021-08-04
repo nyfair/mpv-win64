@@ -11,9 +11,9 @@ source=("http://downloads.sourceforge.net/lame/lame-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
+  export CFLAGS="-msse2 ${CFLAGS}"
   cd $srcdir/lame-$pkgver
   ./configure prefix=/opt --disable-shared --enable-nasm --disable-frontend
-  CFLAGS="-msse2 ${CFLAGS}" make
 }
 
 package() {
