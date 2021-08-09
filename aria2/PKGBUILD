@@ -6,11 +6,12 @@ pkgdesc='Download utility that supports HTTP(S), FTP, BitTorrent, and Metalink'
 arch=('x86_64')
 url='http://aria2.sourceforge.net/'
 license=('GPL2')
-source=("https://github.com/aria2/aria2/releases/download/release-$pkgver/aria2-$pkgver.tar.xz")
+source=("https://github.com/aria2/aria2/archive/refs/heads/master.zip")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/aria2-$pkgver
+  cd $srcdir/aria2-master
+  autoreconf -i
   patch -p1 -i ../../aria2.patch
   ./configure \
     --host=x86_64-w64-mingw32 \
@@ -30,7 +31,7 @@ build() {
 package() {
   depends=('mcfgthread')
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/aria2-$pkgver
+  cd $srcdir/aria2-master
   mkdir -p $pkgdir/opt/bin
   mv src/aria2c.exe $pkgdir/opt/bin
 }
