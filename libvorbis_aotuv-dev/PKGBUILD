@@ -7,18 +7,17 @@ arch=('x86_64')
 url="https://ao-yumi.github.io/aotuv_web/"
 makedepends=('libogg-dev')
 license=('BSD')
-source=("https://github.com/enzo1982/vorbis-aotuv-lancer/archive/master.zip")
+source=("https://github.com/AO-Yumi/vorbis_aotuv/archive/master.zip")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/vorbis-aotuv-lancer-master
-  ./autogen.sh
+  cd $srcdir/vorbis_aotuv-master
   ./configure prefix=/opt --disable-shared --disable-docs --disable-examples
   make
 }
 
 package() {
-  cd $srcdir/vorbis-aotuv-lancer-master
+  cd $srcdir/vorbis_aotuv-master
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share
 }

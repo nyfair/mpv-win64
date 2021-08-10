@@ -7,17 +7,26 @@ arch=('x86_64')
 url="https://github.com/libass/libass/"
 makedepends=('nasm' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev')
 license=('BSD')
-source=("https://github.com/libass/libass/releases/download/$pkgver/libass-$pkgver.tar.xz")
+# source=("https://github.com/libass/libass/releases/download/$pkgver/libass-$pkgver.tar.xz")
+# test 0.15.2 osd font
+source=("https://github.com/libass/libass/archive/1daecf4e5c056da08fbd365cd8e7603b5af9b607.zip")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libass-$pkgver
+  # cd $srcdir/libass-$pkgver
+  # test 0.15.2 osd font
+  cd $srcdir/libass-1daecf4e5c056da08fbd365cd8e7603b5af9b607
+  ./autogen.sh
+  # test
   ./configure prefix=/opt --disable-shared
   make
 }
 
 package() {
-  cd $srcdir/libass-$pkgver
+  # cd $srcdir/libass-$pkgver
+  # test 0.15.2 osd font
+  cd $srcdir/libass-1daecf4e5c056da08fbd365cd8e7603b5af9b607
+  # test
   make DESTDIR=$pkgdir install
   sed -i '/Requires:/d' $pkgdir/opt/lib/pkgconfig/*.pc
   sed -i 's/Requires.private/Requires/' $pkgdir/opt/lib/pkgconfig/*.pc
