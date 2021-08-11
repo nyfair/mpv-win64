@@ -10,7 +10,6 @@ makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-git-dev' 'luajit-dev' 'ffnvcodec-d
 conflicts=('mpv')
 license=('GPL3')
 source=("git+https://github.com/mpv-player/mpv")
-options=(!strip)
 md5sums=('SKIP')
 
 build() {

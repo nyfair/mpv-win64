@@ -7,7 +7,6 @@ arch=('x86_64')
 url="https://gcc-mcf.lhmouse.com/"
 license=('custom')
 source=()
-options=(!strip)
 md5sums=()
 
 build() {
@@ -56,4 +55,5 @@ package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
   cp /d/ucrt64/bin/mcfgthread* $pkgdir/opt/bin/
+  strip $pkgdir/opt/bin/*
 }

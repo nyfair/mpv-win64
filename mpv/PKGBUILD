@@ -9,7 +9,6 @@ makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-dev' 'luajit-dev' 'ffnvcodec-dev' 
               'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev' 'libplacebo-dev')
 license=('GPL3')
 source=("https://github.com/mpv-player/mpv/archive/v$pkgver.tar.gz")
-options=(!strip)
 md5sums=('SKIP')
 
 build() {
