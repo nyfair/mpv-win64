@@ -33,6 +33,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
+        C:\msys64\usr\bin\bash -lc 'mkdir -p /d/ucrt64/share/gettext; xz -d < /usr/share/gettext/archive.dir.tar.xz | gzip -c > /d/ucrt64/share/gettext/archive.dir.tar.gz'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/aria2; PATH=/opt/bin:/d/ucrt64/bin:/usr/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       if: steps.cache.outputs.cache-hit != 'true'
