@@ -18,7 +18,8 @@ build() {
   mv SPIRV-Headers-master spirv-headers
   mv SPIRV-Tools-master spirv-tools
   sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
-  cd $srcdir/shaderc-$pkgver
+  cp spirv-headers/SPIRV-Headers.pc.in shaderc-$pkgver/
+  cd shaderc-$pkgver
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSHADERC_SKIP_TESTS=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
