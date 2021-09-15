@@ -49,9 +49,11 @@ The FFmpeg and MPV library were built with the following libraries
 - libbluray/libdvdnav/libdvdread/libdvdcss: Parsing BD/DVD
 
 ## TODO ???
-### Build FFmpeg with x264/x265/libaom for video encoding
+### Build FFmpeg with x264/x265/rav1e/SVT-AV1/VVenC for video encoding
 I prefer to directly use these utilities
 ### Build FFmpeg with libfdk_aac for high quality AAC audio encoding
-Yes, fdk aak produce better aac than FFmpeg native, but it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
+Yes, Fraunhofer AAC produce better aac than FFmpeg native, but it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
 ### Build libass with fontconfig for POSIX-like system font configuration
-Fontconfig sucks in windows, and... do you really want to learn it?
+Fontconfig sucks on windows, and... do you really want to learn it?
+### No software av1 decoder?
+Today all public av1 videos are just demos. I suggest you to try vvc for the purpose of testing
