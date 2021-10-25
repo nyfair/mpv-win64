@@ -14,7 +14,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -92,7 +92,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -126,7 +126,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -161,7 +161,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -196,7 +196,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -231,7 +231,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -266,7 +266,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -306,7 +306,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -342,7 +342,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -377,7 +377,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -415,7 +415,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -451,7 +451,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -486,7 +486,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -526,7 +526,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -562,7 +562,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -611,7 +611,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -658,7 +658,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -696,7 +696,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.34pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211009-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211023-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
@@ -744,7 +744,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -780,7 +780,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -853,7 +853,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211009_11.2.1_x64-ucrt
+        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
