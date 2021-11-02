@@ -18,5 +18,5 @@ jobs:
         python autoupdate.py
         git config --global user.name 'nyfair'
         git config --global user.email 'nyfair2012@gmail.com'
-        git commit -am "Automate"
+        git commit -am "Automate" || echo "nothing to update"
         git push
