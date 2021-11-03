@@ -13,8 +13,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv-$pkgver
-  curl -OL https://github.com/mpv-player/mpv/raw/master/video/out/placebo/ra_pl.c
-  mv ra_pl.c video/out/placebo/ra_pl.c
   python bootstrap.py
   CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
   python waf build
