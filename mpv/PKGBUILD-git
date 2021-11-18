@@ -5,25 +5,43 @@ pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
-makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-git-dev' 'luajit-dev' 'ffnvcodec-dev' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'libass-dev' 'lcms2-dev'
-              'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev' 'libplacebo-dev')
+makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-git-dev' 'luajit-dev' 'ffnvcodec-dev' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'lcms2-dev'
+              'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev')
 conflicts=('mpv')
 license=('GPL3')
-source=("git+https://github.com/mpv-player/mpv")
-md5sums=('SKIP')
+source=("git+https://github.com/mpv-player/mpv"
+        "libass.zip"::"https://github.com/libass/libass/archive/refs/heads/master.zip"
+        "libplacebo.zip"::"https://github.com/haasn/libplacebo/archive/refs/heads/master.zip")
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
+  cd $srcdir/libass-master
+  ./autogen.sh
+  ./configure prefix=/opt --disable-shared
+  make install
+  sed -i '/Requires:/d' /opt/lib/pkgconfig/libass.pc
+  sed -i 's/Requires.private/Requires/' /opt/lib/pkgconfig/libass.pc
+
+  cd $srcdir/libplacebo-master
+  mkdir work
+  meson . work --prefix=/opt --buildtype=release --default-library=static \
+    -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
+  cd work
+  ninja install
+
   cd $srcdir/mpv
-  python bootstrap.py
-  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
-  python waf build
+  mkdir work
+  meson . work --buildtype=release
+  cd work
+  ninja
+  ls **/mpv*
 }
 
 package() {
   depends=('ffmpeg-git' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/mpv/build
   mkdir -p $pkgdir/opt/bin/portable_config
+  cd $srcdir/mpv/work
   strip mpv.*
   mv mpv.* $pkgdir/opt/bin
 }

@@ -2,7 +2,7 @@
 pkgname=aria2
 pkgver=1.36.0
 pkgrel=1
-pkgdesc='Download utility that supports HTTP(S), FTP, BitTorrent, and Metalink'
+pkgdesc='Download utility that supports HTTP(S), FTP, and Metalink'
 arch=('x86_64')
 url='http://aria2.sourceforge.net/'
 license=('GPL2')
