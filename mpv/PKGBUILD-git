@@ -30,18 +30,16 @@ build() {
   ninja install
 
   cd $srcdir/mpv
-  mkdir work
-  meson . work --buildtype=release
-  cd work
-  ninja
-  ls **/mpv*
+  python bootstrap.py
+  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
+  python waf build
 }
 
 package() {
   depends=('ffmpeg-git' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin/portable_config
-  cd $srcdir/mpv/work
+  cd $srcdir/mpv/build
   strip mpv.*
   mv mpv.* $pkgdir/opt/bin
 }
