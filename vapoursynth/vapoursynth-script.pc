@@ -6,4 +6,3 @@ Description:
 Version: _ver
 Requires: vapoursynth
 Libs: -L${libdir} -lVSScript
-Cflags: -I${includedir}/vapoursynth
