@@ -31,7 +31,7 @@ build() {
 
   cd $srcdir/mpv
   python bootstrap.py
-  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
+  CC=gcc.exe LDFLAGS="$LDFLAGS -lstdc++" python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
   python waf build
 }
 
