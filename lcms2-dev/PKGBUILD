@@ -10,13 +10,13 @@ source=("https://github.com/mm2/Little-CMS/releases/download/lcms$pkgver/lcms2-$
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/Little-CMS-$pkgver
+  cd $srcdir/lcms2-$pkgver
   ./configure prefix=/opt --disable-shared --without-zlib
   make
 }
 
 package() {
-  cd $srcdir/Little-CMS-$pkgver
+  cd $srcdir/lcms2-$pkgver
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }
