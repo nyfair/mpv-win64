@@ -6,7 +6,7 @@ pkgdesc='Small-footprint color management engine, version 2'
 arch=('x86_64')
 url="http://www.littlecms.com/"
 license=('MIT')
-source=("https://github.com/mm2/Little-CMS/archive/$pkgver.tar.gz")
+source=("https://github.com/mm2/Little-CMS/releases/download/lcms$pkgver/lcms2-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
