@@ -23,8 +23,6 @@ build() {
   sed -i 's/Requires.private/Requires/' /opt/lib/pkgconfig/libass.pc
 
   cd $srcdir/libplacebo-master
-  # ugly d3d11 hack
-  cp /opt/lib/pkgconfig/spirv-cross.pc /opt/lib/pkgconfig/spirv-cross-c-shared.pc
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
