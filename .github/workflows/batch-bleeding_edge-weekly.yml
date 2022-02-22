@@ -8,7 +8,7 @@ on:
 jobs:
   ffmpeg:
     needs: [lame, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -52,7 +52,7 @@ jobs:
         file_glob: true
 
   ffnvcodec:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -88,7 +88,7 @@ jobs:
         file_glob: true
 
   freetype2:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -124,7 +124,7 @@ jobs:
         file_glob: true
 
   fribidi:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -161,7 +161,7 @@ jobs:
         file_glob: true
 
   harfbuzz:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -198,7 +198,7 @@ jobs:
         file_glob: true
 
   lame:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -235,7 +235,7 @@ jobs:
         file_glob: true
 
   lcms2:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -272,7 +272,7 @@ jobs:
 
   libass:
     needs: [freetype2, fribidi, harfbuzz]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -314,7 +314,7 @@ jobs:
 
   libbluray:
     needs: [freetype2]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -352,7 +352,7 @@ jobs:
         file_glob: true
 
   libdvdcss:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -389,7 +389,7 @@ jobs:
 
   libdvdnav:
     needs: [libdvdread]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -429,7 +429,7 @@ jobs:
 
   libdvdread:
     needs: [libdvdcss]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -467,7 +467,7 @@ jobs:
         file_glob: true
 
   libogg:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -504,7 +504,7 @@ jobs:
 
   libplacebo:
     needs: [lcms2, shaderc, spirv-cross, vulkan]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -547,7 +547,7 @@ jobs:
 
   libvorbis_aotuv:
     needs: [libogg]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -585,7 +585,7 @@ jobs:
         file_glob: true
 
   luajit:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -638,7 +638,7 @@ jobs:
 
   mpv:
     needs: [ffmpeg, luajit, lcms2, libbluray, libdvdnav, shaderc, spirv-cross]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -685,7 +685,7 @@ jobs:
 
   mpv-stablelib:
     needs: [luajit, libass, lcms2, libbluray, libdvdnav, shaderc, spirv-cross]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -732,7 +732,7 @@ jobs:
         file_glob: true
 
   opus:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -769,7 +769,7 @@ jobs:
 
   package:
     needs: [mpv, python-embed]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - name: Package
       run: |
@@ -796,7 +796,7 @@ jobs:
         file_glob: true
 
   python-embed:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -822,7 +822,7 @@ jobs:
         file_glob: true
 
   shaderc:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -859,7 +859,7 @@ jobs:
         file_glob: true
 
   spirv-cross:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -896,7 +896,7 @@ jobs:
         file_glob: true
 
   vapoursynth:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -938,7 +938,7 @@ jobs:
         file_glob: true
 
   vulkan:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
       id: cache
