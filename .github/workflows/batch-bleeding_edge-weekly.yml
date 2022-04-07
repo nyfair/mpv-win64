@@ -637,7 +637,7 @@ jobs:
         file_glob: true
 
   mpv:
-    needs: [ffmpeg, luajit, lcms2, libbluray, libdvdnav, shaderc, spirv-cross]
+    needs: [ffmpeg, luajit, lcms2, libbluray, libdvdnav, shaderc, spirv-cross, vulkan]
     runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
@@ -684,7 +684,7 @@ jobs:
         file_glob: true
 
   mpv-stablelib:
-    needs: [luajit, libass, lcms2, libbluray, libdvdnav, shaderc, spirv-cross]
+    needs: [luajit, libass, lcms2, libbluray, libdvdnav, shaderc, spirv-cross, vulkan]
     runs-on: windows-2019
     steps:
     - uses: actions/cache@v2
