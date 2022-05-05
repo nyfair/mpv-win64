@@ -19,8 +19,6 @@ build() {
   ./autogen.sh
   ./configure prefix=/opt --disable-shared
   make install
-  sed -i '/Requires:/d' /opt/lib/pkgconfig/libass.pc
-  sed -i 's/Requires.private/Requires/' /opt/lib/pkgconfig/libass.pc
 
   cd $srcdir/libplacebo-master
   mkdir work
