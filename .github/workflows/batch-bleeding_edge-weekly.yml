@@ -407,7 +407,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -667,7 +667,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.215-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.1-1-x86_64.pkg.tar.zst
@@ -715,7 +715,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.215-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.1-1-x86_64.pkg.tar.zst
