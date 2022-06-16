@@ -24,6 +24,7 @@ All your configurations can be saved within the ***portable_config*** subdirecto
 - [SVP](https://www.svp-team.com) proprietary motion interpolation solution to produce high frame rate video
 - [MVTools](https://github.com/dubhater/vapoursynth-mvtools) another motion interpolation plugin and it was open source
 - [FFMS2](https://github.com/FFMS/ffms2) video source library for multimedia editing
+- [RIFE](https://github.com/HomeOfVapourSynthEvolution/VapourSynth-RIFE-ncnn-Vulkan) new motion interpolation based on rife-ncnn-vulkan
 ### Shader
 - [Anime4K](https://bloc97.github.io/Anime4K/)
 - [SSim/Krig](https://gist.github.com/igv)
