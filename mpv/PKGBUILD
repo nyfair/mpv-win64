@@ -13,6 +13,8 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv-$pkgver
+  sed -i 's/ .. exesuf//g'  player/lua/ytdl_hook.lua
+  sed -i '/exesuf/d'  player/lua/ytdl_hook.lua
   python bootstrap.py
   CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
   python waf build

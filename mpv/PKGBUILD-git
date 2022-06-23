@@ -28,6 +28,8 @@ build() {
   ninja install
 
   cd $srcdir/mpv
+  sed -i 's/ .. exesuf//g'  player/lua/ytdl_hook.lua
+  sed -i '/exesuf/d'  player/lua/ytdl_hook.lua
   python bootstrap.py
   CC=gcc.exe LDFLAGS="$LDFLAGS -lstdc++" python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
   python waf build
