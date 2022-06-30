@@ -6,7 +6,7 @@ pkgdesc='OpenType text shaping engine'
 arch=('x86_64')
 url="https://github.com/harfbuzz/harfbuzz/"
 license=('GPL')
-source=("https://github.com/harfbuzz/harfbuzz/archive/$pkgver.tar.gz")
+source=("https://github.com/harfbuzz/harfbuzz/releases/download/$pkgver/harfbuzz-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {
