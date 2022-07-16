@@ -12,7 +12,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libplacebo-$pkgver
-  sed -i "s/FUCHSIA/FUCHSIA', 'Metal/" src/vulkan/utils_gen.py
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
