@@ -9,12 +9,13 @@ makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-dev' 'luajit-dev' 'ffnvcodec-dev' 
               'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev')
 conflicts=('mpv')
 license=('GPL3')
-source=("git+https://github.com/mpv-player/mpv"
-        "libplacebo.zip"::"https://github.com/haasn/libplacebo/archive/refs/heads/master.zip")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/mpv-player/mpv")
+md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libplacebo-master
+  cd $srcdir
+  git clone --recursive https://code.videolan.org/videolan/libplacebo
+  cd libplacebo
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"

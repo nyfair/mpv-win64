@@ -10,9 +10,8 @@ makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-git-dev' 'luajit-dev' 'ffnvcodec-d
 conflicts=('mpv')
 license=('GPL3')
 source=("git+https://github.com/mpv-player/mpv"
-        "libass.zip"::"https://github.com/libass/libass/archive/refs/heads/master.zip"
-        "libplacebo.zip"::"https://github.com/haasn/libplacebo/archive/refs/heads/master.zip")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+        "libass.zip"::"https://github.com/libass/libass/archive/refs/heads/master.zip")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libass-master
@@ -20,7 +19,9 @@ build() {
   ./configure prefix=/opt --disable-shared
   make install
 
-  cd $srcdir/libplacebo-master
+  cd $srcdir
+  git clone --recursive https://code.videolan.org/videolan/libplacebo
+  cd libplacebo
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
