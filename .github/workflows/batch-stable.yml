@@ -11,7 +11,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220907_12.2.1_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20220922_12.2.1_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -72,7 +72,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220907_12.2.1_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20220922_12.2.1_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -84,7 +84,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -Sy yasm --noconfirm'
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-60-1-x86_64.pkg.tar.zst
@@ -93,7 +93,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-5.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.16.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
@@ -127,11 +127,11 @@ jobs:
     - name: Package
       run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-5.1.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-5.1.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-60-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220907-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220922-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
