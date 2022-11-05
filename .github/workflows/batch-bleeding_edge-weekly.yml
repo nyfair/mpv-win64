@@ -522,6 +522,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         pip install meson ninja mako
+        C:\msys64\usr\bin\bash -lc 'pacman -Sy git --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
