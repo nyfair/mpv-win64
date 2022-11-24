@@ -14,7 +14,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -94,7 +94,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -130,7 +130,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -167,7 +167,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -204,7 +204,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -241,7 +241,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -278,7 +278,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -320,7 +320,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -358,7 +358,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -395,7 +395,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -435,7 +435,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -473,7 +473,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -510,7 +510,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -554,7 +554,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -592,7 +592,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -645,7 +645,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -692,7 +692,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -739,7 +739,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -779,7 +779,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-60-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.36pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20221104-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20221123-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
@@ -830,7 +830,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -867,7 +867,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -946,7 +946,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221123_13.0.0_x64-ucrt${{ secrets.GCC }}
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
