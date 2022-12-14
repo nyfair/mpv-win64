@@ -6,11 +6,11 @@ pkgdesc='A tool and library for parsing and converting SPIR-V to other shader la
 arch=('x86_64')
 url="https://github.com/KhronosGroup/SPIRV-Cross/"
 license=('Apache')
-source=("https://github.com/KhronosGroup/SPIRV-Cross/archive/${pkgver//./-}.tar.gz")
+source=("https://github.com/KhronosGroup/SPIRV-Cross/archive/sdk-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/SPIRV-Cross-${pkgver//./-}
+  cd $srcdir/SPIRV-Cross-sdk-$pkgver
   sed -i 's/ SHARED/ STATIC/' CMakeLists.txt
   sed -i '/SPVC_EXPORT_SYMBOLS/d'  CMakeLists.txt
   rm -rf build && mkdir build && cd build
@@ -21,6 +21,6 @@ build() {
 }
 
 package() {
-  cd $srcdir/SPIRV-Cross-${pkgver//./-}/build
+  cd $srcdir/SPIRV-Cross-sdk-$pkgver/build
   $CMAKE --install . --prefix=$pkgdir/opt
 }
