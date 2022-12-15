@@ -13,7 +13,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221205_13.0.0_x64-ucrt${{ secrets.GCC }}
+        key: mcf_20221205_13.0.0_x64-ucrt
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
