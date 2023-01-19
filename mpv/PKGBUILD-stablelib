@@ -23,13 +23,12 @@ build() {
   ninja install
 
   cd $srcdir/mpv
-  # temporaray gcc13 hack
-  sed -i 's/MPV_CONFDIR/mpv_home/' osdep/path-unix.c
   sed -i 's/ .. exesuf//g'  player/lua/ytdl_hook.lua
   sed -i '/exesuf/d'  player/lua/ytdl_hook.lua
-  python bootstrap.py
-  CC=gcc.exe LDFLAGS="$LDFLAGS -lstdc++" python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
-  python waf build
+  export LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
+  LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
+  meson setup build --buildtype=release -Dprefix=/opt -Ddvdnav=enabled 
+  meson compile -C build
 }
 
 package() {
@@ -37,6 +36,7 @@ package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
   cd $srcdir/mpv/build
-  strip mpv.*
-  mv mpv.* $pkgdir/opt/bin
+  mv mpv.exe $pkgdir/opt/bin
+  mv generated/mpv.com $pkgdir/opt/bin
+  strip -s $pkgdir/opt/bin/*
 }

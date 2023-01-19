@@ -14,7 +14,6 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv-$pkgver
   # temporaray gcc13 hack
-  export LDFLAGS=
   sed -i 's/MPV_CONFDIR/mpv_home/' osdep/path-unix.c
   sed -i 's/ .. exesuf//g'  player/lua/ytdl_hook.lua
   sed -i '/exesuf/d'  player/lua/ytdl_hook.lua
