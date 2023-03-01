@@ -26,7 +26,6 @@ build() {
   sed -i 's/ .. exesuf//g'  player/lua/ytdl_hook.lua
   sed -i '/exesuf/d'  player/lua/ytdl_hook.lua
   export LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
-  LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
   meson setup build --buildtype=release -Dprefix=/opt -Ddvdnav=enabled 
   meson compile -C build
 }

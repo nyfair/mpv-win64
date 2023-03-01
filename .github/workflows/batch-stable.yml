@@ -83,7 +83,8 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy yasm --noconfirm'
+        pip install meson ninja mako
+        C:\msys64\usr\bin\bash -lc 'pacman -Sy autoconf-wrapper automake-wrapper libtool nasm yasm git --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-6.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.2-1-x86_64.pkg.tar.zst

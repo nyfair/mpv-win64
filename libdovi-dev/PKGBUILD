@@ -1,0 +1,15 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=libdovi-dev
+pkgver=3.1.2
+pkgrel=1
+pkgdesc='Library to read and write Dolby Vision metadata'
+arch=('x86_64')
+url="https://github.com/quietvoid/dovi_tool/tree/main/dolby_vision"
+license=('MIT')
+source=()
+md5sums=()
+
+package() {
+  cd /d/a/mpv-win64/mpv-win64/dovi_tool-libdovi*/dolby_vision
+  cp -r build/* $pkgdir/
+}

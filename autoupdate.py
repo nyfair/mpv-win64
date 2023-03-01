@@ -20,7 +20,7 @@ pkgs['python-embed'] = x['Python']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
-for p in ['ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'lame', 'lcms2', 'libass', 'libbluray', 'libdvdcss', 'libdvdread', 'libdvdnav', 'libogg', 'libplacebo', 'opus', 'shaderc', 'spirv-cross', 'vulkan']:
+for p in ['ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'lame', 'lcms2', 'libass', 'libbluray', 'libdovi', 'libdvdcss', 'libdvdread', 'libdvdnav', 'libogg', 'libplacebo', 'opus', 'shaderc', 'spirv-cross', 'vulkan']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
@@ -69,6 +69,8 @@ with in_place.InPlace('mpv/PKGBUILD-stablelib', newline='') as f:
     f.write(l)
 with in_place.InPlace('.github/workflows/batch-bleeding_edge-weekly.yml', newline='') as f:
   for l in f:
+    if (i:=l.find('tags/libdovi')) > -1:
+      l = '%s%s.zip\n' % (l[0:i+13], pkgs['libdovi-dev'])
     if (i:=l.find('/bleeding_edge/')) > -1:
       r = l[i+15:]
       if r.startswith('ffmpeg-git-dev'):

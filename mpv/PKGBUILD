@@ -13,20 +13,19 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv-$pkgver
-  # temporaray gcc13 hack
-  sed -i 's/MPV_CONFDIR/mpv_home/' osdep/path-unix.c
   sed -i 's/ .. exesuf//g'  player/lua/ytdl_hook.lua
   sed -i '/exesuf/d'  player/lua/ytdl_hook.lua
-  python bootstrap.py
-  CC=gcc.exe LDFLAGS="$LDFLAGS -lstdc++" python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
-  python waf build
+  export LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
+  meson setup build --buildtype=release -Dprefix=/opt -Ddvdnav=enabled 
+  meson compile -C build
 }
 
 package() {
   depends=('ffmpeg' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/mpv-$pkgver/build
   mkdir -p $pkgdir/opt/bin
-  strip mpv.*
-  mv mpv.* $pkgdir/opt/bin
+  cd $srcdir/mpv-$pkgver/build
+  mv mpv.exe $pkgdir/opt/bin
+  mv generated/mpv.com $pkgdir/opt/bin
+  strip -s $pkgdir/opt/bin/*
 }
