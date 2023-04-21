@@ -11,6 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/lcms2-$pkgver
+  export CFLAGS="-masm=att ${CFLAGS}"
   ./configure prefix=/opt --disable-shared --without-zlib
   make
 }

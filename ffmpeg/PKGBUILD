@@ -19,6 +19,7 @@ build() {
 
 package_ffmpeg-dev() {
   cd $srcdir/ffmpeg-$pkgver
+  export CFLAGS="-masm=att ${CFLAGS}"
   ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
     --disable-mediafoundation --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
