@@ -17,12 +17,10 @@ All your configurations can be saved within the ***portable_config*** subdirecto
 - [Default MPV Setting](https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf)
 - [Default MPV Key Binding](https://github.com/mpv-player/mpv/blob/master/etc/input.conf)
 ### Lua Plugin
-- [Autoload](https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua)
-- [Play List Manager](https://github.com/jonniek/mpv-playlistmanager)
-- [MPV Thumbnail](https://github.com/TheAMM/mpv_thumbnail_script)
+- [uosc](https://github.com/tomasklaen/uosc)
+- [thumbfast](https://github.com/po5/thumbfast)
 ### VapourSynth Plugin
-- [SVP](https://www.svp-team.com) proprietary motion interpolation solution to produce high frame rate video
-- [MVTools](https://github.com/dubhater/vapoursynth-mvtools) another motion interpolation plugin and it was open source
+- [MVTools](https://github.com/dubhater/vapoursynth-mvtools) motion interpolation plugin and it was open source
 - [FFMS2](https://github.com/FFMS/ffms2) video source library for multimedia editing
 - [RIFE](https://github.com/HomeOfVapourSynthEvolution/VapourSynth-RIFE-ncnn-Vulkan) new motion interpolation based on rife-ncnn-vulkan
 ### Shader
@@ -48,6 +46,7 @@ The FFmpeg and MPV library were built with the following libraries
 - vapoursynth: VapourSynth Plugin and VSS Video Source
 - shaderc/spirv/libplacebo: D3D11 & Vulkan Context
 - libbluray/libdvdnav/libdvdread/libdvdcss: Parsing BD/DVD
+- libdovi: Parsing Dolby Vision Metadata
 
 ## TODO ???
 ### Build FFmpeg with x264/x265/rav1e/SVT-AV1/VVenC for video encoding
