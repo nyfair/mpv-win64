@@ -14,7 +14,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -94,7 +94,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -130,7 +130,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -167,7 +167,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -204,7 +204,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -241,7 +241,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -278,7 +278,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -320,7 +320,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -358,7 +358,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -407,7 +407,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -444,7 +444,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -484,7 +484,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -522,7 +522,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -559,7 +559,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -574,7 +574,7 @@ jobs:
         C:\msys64\usr\bin\bash -lc 'pacman -Sy git --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.1.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.246.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.246.1-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
@@ -604,7 +604,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -642,7 +642,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -695,7 +695,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -722,7 +722,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.246.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.246.1-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
@@ -743,7 +743,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -771,7 +771,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.246.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.246.1-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
@@ -791,7 +791,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -831,7 +831,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-62-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.36pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230512-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230522-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
@@ -882,7 +882,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -919,7 +919,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
@@ -998,7 +998,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230512_13.1.1_x64-ucrt
+        key: mcf_20230522_13.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
