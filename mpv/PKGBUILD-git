@@ -42,6 +42,5 @@ package() {
   mkdir -p $pkgdir/opt/bin
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir/opt/bin
-  mv generated/mpv.com $pkgdir/opt/bin
   strip -s $pkgdir/opt/bin/*
 }
