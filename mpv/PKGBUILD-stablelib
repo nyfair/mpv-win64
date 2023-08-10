@@ -16,6 +16,7 @@ build() {
   cd $srcdir
   git clone --recursive https://code.videolan.org/videolan/libplacebo
   cd libplacebo
+  sed -i 's/x86_64/i686/' src/meson.build
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
