@@ -16,9 +16,13 @@ build() {
 
 package_luajit-dev() {
   cd $srcdir/LuaJIT-2.1.ROLLING
-  make DESTDIR=$pkgdir PREFIX=/opt install
-  rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
-  mv src/lua*.a $pkgdir/opt/lib
+  make DESTDIR=$pkgdir install
+  mkdir -p $pkgdir/opt/lib
+  mv $pkgdir/usr/local/include $pkgdir/opt
+  mv $pkgdir/usr/local/lib/pkgconfig $pkgdir/opt/lib
+  mv src/*.a $pkgdir/opt/lib
+  rm -rf $pkgdir/usr
+  sed -i 's/\/usr\/local/\/opt/' $pkgdir/opt/lib/pkgconfig/luajit.pc
 }
 
 package_luajit() {
