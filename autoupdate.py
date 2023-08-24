@@ -15,7 +15,6 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
 pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
 # pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
-pkgs['luajit'] = x['LuaJIT']
 pkgs['python-embed'] = x['Python']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
@@ -28,7 +27,6 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)
-pkgs['luajit-dev'] = pkgs['luajit']
 pkgs['vapoursynth-dev'] = pkgs['vapoursynth']
 pkgs['ffmpeg-dev'] = pkgs['ffmpeg']
 for t in ['batch-stable.yml', 'batch-bleeding_edge-weekly.yml']:
