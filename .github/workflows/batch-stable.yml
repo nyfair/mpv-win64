@@ -85,7 +85,7 @@ jobs:
       run: |
         C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja mako
         C:\msys64\usr\bin\bash -lc 'pacman -Sy autoconf-wrapper automake-wrapper libtool nasm yasm git --noconfirm'
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-6.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-6.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
@@ -128,7 +128,7 @@ jobs:
     - name: Package
       run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-6.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-6.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-65-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.37.0-1-x86_64.pkg.tar.xz
