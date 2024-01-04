@@ -19,10 +19,11 @@ build() {
   mv glslang* glslang
   mv SPIRV-Headers* spirv-headers
   mv SPIRV-Tools* spirv-tools
-  # temporaray gcc13 hack
   sed -i '/namespace/i #include <cstdint>' glslang/glslang/MachineIndependent/SymbolTable.h
   sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
   cd shaderc-$pkgver
+  sed -i '/(build-version/,+4d' CMakeLists.txt
+  sed -i '/glslc/d' CMakeLists.txt
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSHADERC_SKIP_TESTS=ON -DSHADERC_SKIP_SPVC=ON -DSHADERC_SKIP_INSTALL=ON -DSHADERC_SKIP_EXAMPLES=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
