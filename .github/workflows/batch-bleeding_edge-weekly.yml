@@ -1,5 +1,7 @@
 name: batch-bleeding_edge-weekly
-
+defaults:
+  run:
+    shell: C:\shells\msys2bash.cmd {0}
 on:
   workflow_dispatch:
   schedule:
@@ -16,24 +18,26 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy nasm git --noconfirm'
+        pacman -Sy nasm git --noconfirm
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+        pacman -U *.zst --noconfirm
+        cd ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf -p PKGBUILD-git
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -60,16 +64,18 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -96,16 +102,18 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd freetype2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -132,17 +140,26 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'        
+    - name: Install python dependencies
+      shell: pwsh
+      run: pip install meson ninja
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pypath=$(cygpath -u $pythonLocation)
+        cd fribidi-dev; PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -169,17 +186,26 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'        
+    - name: Install python dependencies
+      shell: pwsh
+      run: pip install meson ninja
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pypath=$(cygpath -u $pythonLocation)
+        cd harfbuzz-dev; PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -206,17 +232,19 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy nasm --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -Sy nasm --noconfirm
+        cd lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -243,16 +271,18 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -280,21 +310,23 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy nasm --noconfirm'
+        pacman -Sy nasm --noconfirm
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -U *.zst --noconfirm
+        cd libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -322,18 +354,20 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.2-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -U *.zst --noconfirm
+        cd libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -360,13 +394,16 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
+        MSYS2_PATH_TYPE: inherit
         MSYSTEM: UCRT64
       run: |
         # skip building cargo-c
@@ -374,15 +411,15 @@ jobs:
         rustup toolchain install stable-x86_64-pc-windows-gnu
         rustup default stable-x86_64-pc-windows-gnu
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
-        7z x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.rustup\toolchains\stable-x86_64-pc-windows-gnu\bin'
+        7z x cargo-c-windows-gnu.zip -o/c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
         curl -OL https://github.com/quietvoid/dovi_tool/archive/refs/tags/libdovi-3.2.0.zip
         7z x libdovi*.zip
         cd dovi_tool-libdovi*
         cd dolby_vision
         mkdir build
-        set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+        export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
         cargo cinstall --manifest-path=Cargo.toml --prefix=/opt --destdir=build --release --library-type staticlib
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd ../../libdovi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -409,16 +446,18 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -446,19 +485,21 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -U *.zst --noconfirm
+        cd libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -486,18 +527,20 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -U *.zst --noconfirm
+        cd libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -524,16 +567,18 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -561,24 +606,33 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'        
+    - name: Install python dependencies
+      shell: pwsh
+      run: pip install meson ninja mako
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja mako
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy git --noconfirm'
+        pacman -Sy git --noconfirm
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -U *.zst --noconfirm
+        pypath=$(cygpath -u $pythonLocation)
+        cd libplacebo-dev; PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -606,18 +660,20 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -U *.zst --noconfirm
+        cd libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -644,16 +700,18 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd luajit; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -697,17 +755,26 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'        
+    - name: Install python dependencies
+      shell: pwsh
+      run: pip install meson ninja mako
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja mako
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy autoconf-wrapper automake-wrapper libtool nasm yasm git --noconfirm'
+        pypath=$(cygpath -u $pythonLocation)
+        pacman -Sy autoconf-wrapper automake-wrapper libtool nasm yasm git --noconfirm
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-dev-6.2pre-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
@@ -725,8 +792,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+        pacman -U *.zst --noconfirm
+        cd mpv; PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin makepkg-mcf -sLf -p PKGBUILD-git
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -746,17 +813,26 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'        
+    - name: Install python dependencies
+      shell: pwsh
+      run: pip install meson ninja mako
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja mako
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy yasm git --noconfirm'
+        pypath=$(cygpath -u $pythonLocation)
+        pacman -Sy yasm git --noconfirm
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-6.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
@@ -774,8 +850,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
+        pacman -U *.zst --noconfirm
+        cd mpv; PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin makepkg-mcf -sLf -p PKGBUILD-stablelib
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -794,16 +870,18 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -825,22 +903,36 @@ jobs:
     needs: [mpv, python-embed]
     runs-on: windows-2019
     steps:
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Package
       run: |
-        $date = Get-Date -Format "yyyyMMdd"
+        date=$(date +%Y%m%d)
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-6.2pre-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-65-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.38pre-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20231222-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
-        md C:\msys64\opt\bin\portable_config
-        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
+        pacman -U *.xz --noconfirm
+        mkdir -p /opt/bin/portable_config
+        7z a All-in-One-MPV-git-withoutPython-$date.7z /opt/bin/*
+        cp All-in-One-MPV-git-withoutPython-$date.7z All-in-One-MPV-git-withoutPython-latest.7z
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.11.7-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/python* --noconfirm"
-        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
+        pacman -U python* --noconfirm
+        7z a All-in-One-MPV-git-$date.7z /opt/bin/*
+        cp All-in-One-MPV-git-$date.7z All-in-One-MPV-git-latest.7z
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -853,12 +945,25 @@ jobs:
   python-embed:
     runs-on: windows-2019
     steps:
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
-    - name: Build
+    - name: Config msys2
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
+    - name: Build
+      env:
+        MSYSTEM: UCRT64
+      run: |
+        cd python-embed; makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -885,17 +990,19 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -922,17 +1029,19 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -953,12 +1062,25 @@ jobs:
   vapoursynth:
     runs-on: windows-2019
     steps:
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
-    - name: Build
+    - name: Config msys2
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
+    - name: Build
+      env:
+        MSYSTEM: UCRT64
+      run: |
+        cd vapoursynth; makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -1001,17 +1123,19 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231222_13.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v2
+    - name: Config msys2
+      run: |
+        cp msys2-config/makepkg_mcf.conf /etc
+        cp msys2-config/makepkg-mcf /usr/bin
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg-mcf -sLf
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
