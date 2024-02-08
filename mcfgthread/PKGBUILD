@@ -181,6 +181,8 @@ build() {
   rm bin/idle*
   rm bin/libpython*
   rm bin/py*
+  rm bin/meson*
+  rm bin/ninja*
   rm -rf include/python*
   rm -rf lib/python*
 
