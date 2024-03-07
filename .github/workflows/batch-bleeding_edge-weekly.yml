@@ -10,14 +10,14 @@ jobs:
     needs: [lame, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -29,7 +29,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.5.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
@@ -54,14 +54,14 @@ jobs:
   ffnvcodec:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -90,14 +90,14 @@ jobs:
   freetype2:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -126,14 +126,14 @@ jobs:
   fribidi:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -163,14 +163,14 @@ jobs:
   harfbuzz:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -200,14 +200,14 @@ jobs:
   lame:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -237,14 +237,14 @@ jobs:
   lcms2:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -274,14 +274,14 @@ jobs:
     needs: [freetype2, fribidi, harfbuzz]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -316,14 +316,14 @@ jobs:
     needs: [freetype2]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -354,14 +354,14 @@ jobs:
   libdovi:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -403,14 +403,14 @@ jobs:
   libdvdcss:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -440,14 +440,14 @@ jobs:
     needs: [libdvdread]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -480,14 +480,14 @@ jobs:
     needs: [libdvdcss]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -518,14 +518,14 @@ jobs:
   libogg:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -555,14 +555,14 @@ jobs:
     needs: [lcms2, libdovi, shaderc, spirv-cross, vulkan]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -600,14 +600,14 @@ jobs:
     needs: [libogg]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -638,14 +638,14 @@ jobs:
   luajit:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -691,14 +691,14 @@ jobs:
     needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdovi, libdvdnav, shaderc, spirv-cross, vulkan]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -740,14 +740,14 @@ jobs:
     needs: [luajit, libass, lcms2, libbluray, libdovi, libdvdnav, shaderc, spirv-cross, vulkan]
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -788,14 +788,14 @@ jobs:
   opus:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -832,7 +832,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-65-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.38pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20240222-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20240305-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
@@ -855,7 +855,7 @@ jobs:
     steps:
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       run: |
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
@@ -879,14 +879,14 @@ jobs:
   shaderc:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -916,14 +916,14 @@ jobs:
   spirv-cross:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -955,7 +955,7 @@ jobs:
     steps:
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       run: |
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
@@ -995,14 +995,14 @@ jobs:
   vulkan:
     runs-on: windows-2019
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240222_13.2.1_x64-ucrt
+        key: mcf_20240305_13.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include

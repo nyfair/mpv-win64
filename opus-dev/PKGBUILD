@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=opus-dev
-pkgver=1.4
+pkgver=1.5.1
 pkgrel=1
 pkgdesc="Totally open, royalty-free, highly versatile audio codec"
 arch=('x86_64')
@@ -11,7 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/opus-$pkgver
-  ./configure prefix=/opt --disable-shared --disable-doc --disable-extra-programs
+  ./configure prefix=/opt --disable-shared --disable-doc --disable-extra-programs --enable-dred --enable-deep-plc --enable-osce
   make
 }
 
