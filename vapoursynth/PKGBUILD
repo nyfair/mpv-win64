@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(vapoursynth-dev vapoursynth-plugin-core-extra vapoursynth)
-pkgver=65
+pkgver=66
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
@@ -41,7 +41,7 @@ package_vapoursynth-plugin-core-extra() {
 }
 
 package_vapoursynth() {
-  optdepends=('python-embed>=3.11')
+  optdepends=('python-embed>=3.12')
   rm -rf $srcdir/sdk
   mkdir $pkgdir/opt
   mv $srcdir $pkgdir/opt/bin
