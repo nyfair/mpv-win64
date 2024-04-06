@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(ffmpeg-git-dev ffmpeg-git)
-pkgver=6.2pre
+pkgver=7.1pre
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
