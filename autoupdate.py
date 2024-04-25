@@ -4,6 +4,7 @@ import in_place
 
 resp = request.urlopen('https://github.com/nyfair/nginx-nosni/raw/master/old.json')
 x = json.loads(resp.read().decode('utf-8'))
+x = dict(map(lambda p: (p, x['data'][p]['version']), x['data'].keys()))
 mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
 with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
   for l in f:

@@ -14,6 +14,7 @@ build() {
   cd $srcdir
   rm *7z* con* ms* vc* MANIFEST* setup.py portable.vs VSScriptPython38.dll VapourSynth64*.zip
   bsdtar xvf wheel/*cp312* '*.pyd'
+  bsdtar xvf wheel/*cp312* --strip-components 4 '*.dll'
   rm -rf doc wheel
 }
 
@@ -38,6 +39,8 @@ package_vapoursynth-plugin-core-extra() {
   mv vsrepo.py $pkgdir/opt/bin
   mv VSVFW.dll $pkgdir/opt/bin
   mv vs-coreplugins/AvsCompat.dll $pkgdir/opt/bin/vs-coreplugins
+  mv *.pyd $pkgdir/opt/bin
+  mv vapoursynth.dll $pkgdir/opt/bin
 }
 
 package_vapoursynth() {
