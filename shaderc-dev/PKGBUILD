@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=shaderc-dev
-pkgver=2024.0
+pkgver=2024.1
 pkgrel=1
 pkgdesc='Collection of tools, libraries and tests for shader compilation'
 arch=('x86_64')
@@ -26,7 +26,7 @@ build() {
   sed -i '/glslc/d' CMakeLists.txt
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DSHADERC_SKIP_TESTS=ON -DSHADERC_SKIP_SPVC=ON -DSHADERC_SKIP_INSTALL=ON -DSHADERC_SKIP_EXAMPLES=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
+    -DSHADERC_SKIP_TESTS=ON -DSHADERC_SKIP_COPYRIGHT_CHECK=ON -DSHADERC_SKIP_INSTALL=ON -DSHADERC_SKIP_EXAMPLES=ON -DENABLE_SPIRV_TOOLS_INSTALL=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
   $CMAKE --build .
 }
 

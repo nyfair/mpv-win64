@@ -55,5 +55,6 @@ I prefer to directly use these utilities
 Yes, Fraunhofer AAC produce better aac than FFmpeg native, but it is still not in the top tier. I recommend you to use xHE-AAC or Apple AAC instead
 ### Build libass with fontconfig for POSIX-like system font configuration
 Fontconfig sucks on windows, and... do you really want to learn it?
-### No software av1 decoder?
-Today all public av1 videos are just demos. I suggest you to try vvc for the purpose of testing
+### Build FFmpeg with dav1d for av1 decoding
+~~Today all public av1 videos are just demos. I suggest you to try vvc for the purpose of testing~~  
+ffmpeg has built-in av1 & vvc decoder now
