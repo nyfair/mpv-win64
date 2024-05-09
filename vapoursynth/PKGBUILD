@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(vapoursynth-dev vapoursynth-plugin-core-extra vapoursynth)
-pkgver=66
+pkgver=68
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
@@ -12,7 +12,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  rm *7z* con* ms* vc* MANIFEST* setup.py portable.vs VSScriptPython38.dll VapourSynth64*.zip
+  rm *7z* con* ms* vc* MANIFEST* portable.vs VSScriptPython38.dll VapourSynth64*.zip
   bsdtar xvf wheel/*cp312* '*.pyd'
   bsdtar xvf wheel/*cp312* --strip-components 4 '*.dll'
   rm -rf doc wheel
@@ -20,11 +20,12 @@ build() {
 
 package_vapoursynth-dev() {
   cd $srcdir
-  mkdir -p $pkgdir/opt
-  mv sdk/include $pkgdir/opt
+  mkdir -p $pkgdir/opt/include
+  mv sdk/include/vapoursynth/* $pkgdir/opt/include
   mv sdk/lib64 $pkgdir/opt/lib
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
+
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
 }
