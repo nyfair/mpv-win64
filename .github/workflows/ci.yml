@@ -10,7 +10,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20240605_14.1.1_x64-ucrt
+        key: mcf_20240621_14.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v4
