@@ -178,6 +178,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
+        C:\msys64\usr\bin\bash -lc 'pacman -Sy git --noconfirm'
         C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
