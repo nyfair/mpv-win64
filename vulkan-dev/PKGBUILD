@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=vulkan-dev
-pkgver=1.3.283.0
+pkgver=1.3.290.0
 pkgrel=1
 pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
@@ -17,7 +17,7 @@ build() {
 
   cd $srcdir/Vulkan-Headers*
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
+  $CMAKE .. -G "MinGW Makefiles" -DVULKAN_HEADERS_ENABLE_MODULE=false -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
   $CMAKE --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader*
