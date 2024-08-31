@@ -702,8 +702,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
@@ -751,8 +751,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
