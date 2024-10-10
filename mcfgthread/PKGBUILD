@@ -24,8 +24,6 @@ build() {
   rm -rf lib/cmake*
 
   #Remove boost
-  rm bin/b2.exe
-  rm bin/bjam.exe
   rm bin/libboost*
   rm -rf include/boost
   rm lib/libboost*
