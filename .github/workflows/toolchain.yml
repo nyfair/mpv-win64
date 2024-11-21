@@ -17,7 +17,7 @@ jobs:
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20241120_14.2.1_x64-ucrt_7344d1acf6d5a2ad9e1284eaea408d3e9c31b898.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20241120_14.2.1_x64-ucrt_7344d1acf6d5a2ad9e1284eaea408d3e9c31b898.7z --ssl-no-revoke --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
