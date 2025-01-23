@@ -11,7 +11,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20250103_14.2.1_x64-ucrt
+        key: mcf_20250120_14.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v4
@@ -72,7 +72,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20250103_14.2.1_x64-ucrt
+        key: mcf_20250120_14.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v4
@@ -133,7 +133,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-70-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.39.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20250103-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20250120-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
