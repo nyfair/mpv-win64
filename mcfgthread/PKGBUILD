@@ -64,16 +64,10 @@ build() {
   rm bin/gdb*
 
   #Remove gettext
-  rm bin/autopoint
-  rm bin/envsubst.exe
-  rm bin/msg*
-  rm bin/recode-sr-latin.exe
   rm include/autosprintf.h
-  rm include/gettext-po.h
   rm include/libintl.h
   rm -rf lib/gettext
   rm lib/libasprintf*
-  rm lib/libgettext*
   rm lib/libintl*
 
   #Remove iconv
