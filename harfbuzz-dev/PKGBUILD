@@ -5,6 +5,7 @@ pkgrel=1
 pkgdesc='OpenType text shaping engine'
 arch=('x86_64')
 url="https://github.com/harfbuzz/harfbuzz/"
+makedepends=('freetype2-dev')
 license=('GPL')
 source=()
 md5sums=()
