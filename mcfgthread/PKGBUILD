@@ -241,5 +241,6 @@ package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
   cp /d/ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
+  rm $pkgdir/opt/bin/*minimal*
   strip $pkgdir/opt/bin/*
 }
