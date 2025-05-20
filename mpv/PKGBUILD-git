@@ -14,7 +14,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  git clone --recursive https://code.videolan.org/videolan/libplacebo
+  git clone --recursive --depth=1 https://code.videolan.org/videolan/libplacebo
   cd libplacebo
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
