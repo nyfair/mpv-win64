@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
       id: cache

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
       id: cache
@@ -25,6 +25,7 @@ jobs:
     - name: Make Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
+        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       if: steps.cache.outputs.cache-hit != 'true'
