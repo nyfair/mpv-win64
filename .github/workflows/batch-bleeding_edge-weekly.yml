@@ -848,6 +848,11 @@ jobs:
   python-embed:
     runs-on: windows-latest
     steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v4
@@ -946,6 +951,11 @@ jobs:
   vapoursynth:
     runs-on: windows-latest
     steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v4
