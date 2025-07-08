@@ -13,7 +13,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -25,7 +25,6 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression git nasm --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
@@ -33,8 +32,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -58,7 +57,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -70,8 +69,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -95,7 +93,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -107,8 +105,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -132,7 +129,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -144,9 +141,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -171,7 +166,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -183,11 +178,9 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression git --noconfirm'
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -211,7 +204,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -223,8 +216,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression nasm --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -248,7 +240,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -260,8 +252,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -286,7 +277,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -298,12 +289,11 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression nasm --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-11.2.1-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -328,7 +318,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -340,10 +330,9 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -367,7 +356,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -379,7 +368,6 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
         # skip building cargo-c
         # cargo install cargo-c --features=vendored-openssl
         rustup toolchain install stable-x86_64-pc-windows-gnu
@@ -393,7 +381,7 @@ jobs:
         mkdir build
         set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
         cargo cinstall --manifest-path=Cargo.toml --prefix=/opt --destdir=build --release --library-type staticlib
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -417,7 +405,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -429,8 +417,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -455,7 +442,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -467,11 +454,10 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -496,7 +482,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -508,10 +494,9 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -535,7 +520,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -547,8 +532,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -573,7 +557,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -585,15 +569,13 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression git --noconfirm'
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja mako
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.313.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -618,7 +600,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -630,10 +612,9 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -657,7 +638,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -669,8 +650,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -711,7 +691,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -723,8 +703,6 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression autoconf-wrapper automake-wrapper libtool nasm yasm git --noconfirm'
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja mako
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-dev-7.2pre-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
@@ -742,8 +720,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.313.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -760,7 +738,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -772,10 +750,6 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression yasm git --noconfirm'
-        C:\hostedtoolcache\windows\python\3.9.13\x64\python -m pip install meson ninja mako
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy yasm --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'pacman -Sydd git --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
@@ -793,8 +767,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.313.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.13/x64:/c/hostedtoolcache/windows/python/3.9.13/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -810,7 +784,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -822,8 +796,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -853,14 +826,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-72-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.41pre-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20250623-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
         7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.13.5-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-plugin-core-extra-72-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
     - name: Upload
@@ -880,8 +853,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -905,7 +877,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -916,10 +888,8 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression mingw-w64-x86_64-cmake --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -943,7 +913,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -954,10 +924,8 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression mingw-w64-x86_64-cmake --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -983,8 +951,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -1024,7 +991,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -1035,10 +1002,8 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression mingw-w64-x86_64-cmake --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:

@@ -12,7 +12,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache
       with:
-        path: D:\ucrt64
+        path: D:\msys64
         key: mcf_20250623_15.1.1_x64-ucrt
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
@@ -25,8 +25,10 @@ jobs:
     - name: Make Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression git autoconf-wrapper automake-wrapper libtool mingw-w64-ucrt-x86_64-nasm mingw-w64-ucrt-x86_64-python-mako --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        xcopy /e C:\msys64 D:\msys64\
+        xcopy /e /y D:\ucrt64 D:\msys64\ucrt64
     - name: Delete
       if: steps.cache.outputs.cache-hit != 'true'
       uses: mknejp/delete-release-assets@v1

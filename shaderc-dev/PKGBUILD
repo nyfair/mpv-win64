@@ -25,9 +25,9 @@ build() {
   sed -i '/(build-version/,+4d' CMakeLists.txt
   sed -i '/glslc/d' CMakeLists.txt
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSHADERC_SKIP_TESTS=ON -DSHADERC_SKIP_COPYRIGHT_CHECK=ON -DSHADERC_SKIP_INSTALL=ON -DSHADERC_SKIP_EXAMPLES=ON -DENABLE_SPIRV_TOOLS_INSTALL=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
-  $CMAKE --build .
+  cmake --build .
 }
 
 package() {
