@@ -10,7 +10,7 @@ source=()
 md5sums=()
 
 build() {
-  cd /d/ucrt64
+  cd /ucrt64
   set -ex
   find ./lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -exec rm -f {} +
   find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
@@ -224,7 +224,7 @@ build() {
 package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
-  cp /d/ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
+  cp /ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
   rm $pkgdir/opt/bin/*minimal*
   strip $pkgdir/opt/bin/*
 }
