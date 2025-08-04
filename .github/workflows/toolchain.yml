@@ -30,21 +30,75 @@ jobs:
         xcopy /e C:\msys64 D:\msys64\
         xcopy /e /y D:\ucrt64 D:\msys64\ucrt64
         D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
-    - name: Delete
+    - name: Delete Universal
       if: steps.cache.outputs.cache-hit != 'true'
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
+        tag: latest-universal
         assets: mcfgthread*
         fail-if-no-assets: false
         fail-if-no-release: false
-    - name: Upload
+    - name: Upload Universal
       if: steps.cache.outputs.cache-hit != 'true'
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mcfgthread/*pkg*.xz
-        tag: latest
+        tag: latest-universal
+        overwrite: true
+        file_glob: true
+    - name: Delete V3
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v3
+        assets: mcfgthread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload V3
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mcfgthread/*pkg*.xz
+        tag: latest-x86-64-v3
+        overwrite: true
+        file_glob: true
+    - name: Delete V4
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v4
+        assets: mcfgthread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload V4
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mcfgthread/*pkg*.xz
+        tag: latest-x86-64-v4
+        overwrite: true
+        file_glob: true
+    - name: Delete Zen4+
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-amd-zen4+
+        assets: mcfgthread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload Zen4+
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mcfgthread/*pkg*.xz
+        tag: latest-amd-zen4+
         overwrite: true
         file_glob: true

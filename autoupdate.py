@@ -36,18 +36,18 @@ for t in ['batch-stable.yml', 'batch-bleeding_edge-weekly.yml', 'ci.yml']:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
         l = '%s%s\n' % (l[:i+9], mingw)
-      elif (i:=l.find('/dev/')) > -1:
+      elif (i:=l.find('/dev')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
-        p = l[i+5:rr]
+        p = l[i+15:rr]
         if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+5], p, pkgs[p], l[r:])
-      elif (i:=l.find('/latest/')) > -1:
+          l = '%s%s-%s%s' % (l[:i+15], p, pkgs[p], l[r:])
+      elif (i:=l.find('/latest')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
-        p = l[i+8:rr]
+        p = l[i+18:rr]
         if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
+          l = '%s%s-%s%s' % (l[:i+18], p, pkgs[p], l[r:])
       f.write(l)
 
 ffmpeg_git = pkgs['ffmpeg'].split('.')[:2]
@@ -71,12 +71,12 @@ with in_place.InPlace('.github/workflows/batch-bleeding_edge-weekly.yml', newlin
   for l in f:
     if (i:=l.find('tags/libdovi')) > -1:
       l = '%s%s.zip\n' % (l[0:i+13], pkgs['libdovi-dev'])
-    if (i:=l.find('/bleeding_edge/')) > -1:
-      r = l[i+15:]
+    if (i:=l.find('/bleeding_edge')) > -1:
+      r = l[i+25:]
       if r.startswith('ffmpeg-git-dev'):
-        l = '%sffmpeg-git-dev-%s-1-x86_64.pkg.tar.zst\n' % (l[0:i+15], pkgs_git['ffmpeg'])
+        l = '%sffmpeg-git-dev-%s-1-x86_64.pkg.tar.zst\n' % (l[0:i+25], pkgs_git['ffmpeg'])
       elif r.startswith('ffmpeg-git'):
-        l = '%sffmpeg-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+15], pkgs_git['ffmpeg'])
+        l = '%sffmpeg-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+25], pkgs_git['ffmpeg'])
       elif r.startswith('mpv-git'):
-        l = '%smpv-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+15], pkgs_git['mpv'])
+        l = '%smpv-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+25], pkgs_git['mpv'])
     f.write(l)

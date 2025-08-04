@@ -6,8 +6,8 @@ on:
   - cron: '1 1 * * 4'
 
 jobs:
-  ffmpeg:
-    needs: [lame, libvorbis_aotuv, opus, ffnvcodec, vapoursynth, vulkan]
+  ffmpeg-universal:
+    needs: [lame-universal, libvorbis_aotuv-universal, opus-universal, ffnvcodec-universal, vapoursynth-universal, vulkan-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -25,21 +25,21 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lame-dev-3.100-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*pkg*.xz
-        tag: bleeding_edge
+        tag: bleeding_edge-universal
         overwrite: true
         file_glob: true
     - name: Upload Dev
@@ -47,11 +47,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*.zst
-        tag: bleeding_edge
+        tag: bleeding_edge-universal
         overwrite: true
         file_glob: true
 
-  ffnvcodec:
+  ffnvcodec-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -69,12 +69,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: ffnvcodec*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -83,11 +83,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffnvcodec-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  freetype2:
+  freetype2-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -105,12 +105,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: freetype2*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -119,11 +119,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: freetype2-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  fribidi:
+  fribidi-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -141,12 +141,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: fribidi*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -155,12 +155,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: fribidi-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  harfbuzz:
-    needs: [freetype2]
+  harfbuzz-universal:
+    needs: [freetype2-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -178,14 +178,14 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: harfbuzz*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -194,11 +194,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: harfbuzz-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  lame:
+  lame-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -216,12 +216,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: lame*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -230,11 +230,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: lame-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  lcms2:
+  lcms2-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -252,12 +252,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: lcms2*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -266,12 +266,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: lcms2-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libass:
-    needs: [freetype2, fribidi, harfbuzz]
+  libass-universal:
+    needs: [freetype2-universal, fribidi-universal, harfbuzz-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -289,16 +289,16 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libass*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -307,12 +307,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libass-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libbluray:
-    needs: [freetype2]
+  libbluray-universal:
+    needs: [freetype2-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -330,14 +330,14 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libbluray*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -346,11 +346,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libbluray-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libdovi:
+  libdovi-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -380,13 +380,14 @@ jobs:
         cd dolby_vision
         mkdir build
         set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+        set RUSTFLAGS="-C opt-level=3 -C target-cpu=x86-64"
         cargo cinstall --manifest-path=Cargo.toml --prefix=/opt --destdir=build --release --library-type staticlib
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libdovi*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -395,11 +396,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libdovi-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libdvdcss:
+  libdvdcss-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -417,12 +418,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libdvdcss*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -431,12 +432,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libdvdcss-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libdvdnav:
-    needs: [libdvdread]
+  libdvdnav-universal:
+    needs: [libdvdread-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -454,15 +455,15 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libdvdnav*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -471,12 +472,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libdvdnav-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libdvdread:
-    needs: [libdvdcss]
+  libdvdread-universal:
+    needs: [libdvdcss-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -494,14 +495,14 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libdvdread*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -510,11 +511,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libdvdread-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libogg:
+  libogg-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -532,12 +533,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libogg*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -546,12 +547,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libogg-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libplacebo:
-    needs: [lcms2, libdovi, shaderc, spirv-cross, vulkan]
+  libplacebo-universal:
+    needs: [lcms2-universal, libdovi-universal, shaderc-universal, spirv-cross-universal, vulkan-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -569,18 +570,18 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libplacebo*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -589,12 +590,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libplacebo-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  libvorbis_aotuv:
-    needs: [libogg]
+  libvorbis_aotuv-universal:
+    needs: [libogg-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -612,14 +613,14 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: libvorbis_aotuv*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -628,11 +629,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libvorbis_aotuv-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  luajit:
+  luajit-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -650,12 +651,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
+        tag: latest-universal
         assets: luajit*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -663,7 +664,7 @@ jobs:
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: luajit*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -672,7 +673,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: luajit/*pkg*.xz
-        tag: latest
+        tag: latest-universal
         overwrite: true
         file_glob: true
     - name: Upload Dev
@@ -680,12 +681,12 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: luajit/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  mpv:
-    needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdovi, libdvdnav, shaderc, spirv-cross, vulkan]
+  mpv-universal:
+    needs: [ffmpeg-universal, luajit-universal, libass-universal, lcms2-universal, libbluray-universal, libdovi-universal, libdvdnav-universal, shaderc-universal, spirv-cross-universal, vulkan-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -703,36 +704,36 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-dev-7.2pre-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-universal/ffmpeg-git-dev-7.2pre-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mpv/*pkg*.xz
-        tag: bleeding_edge
+        tag: bleeding_edge-universal
         overwrite: true
         file_glob: true
 
-  mpv-stablelib:
-    needs: [luajit, libass, lcms2, libbluray, libdovi, libdvdnav, shaderc, spirv-cross, vulkan]
+  mpv-stablelib-universal:
+    needs: [luajit-universal, libass-universal, lcms2-universal, libbluray-universal, libdovi-universal, libdvdnav-universal, shaderc-universal, spirv-cross-universal, vulkan-universal]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -750,35 +751,35 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mpv/*pkg*.xz
-        tag: bleeding_edge
+        tag: bleeding_edge-universal
         overwrite: true
         file_glob: true
 
-  opus:
+  opus-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -796,12 +797,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: opus*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -810,29 +811,29 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: opus-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  package:
-    needs: [mpv, python-embed]
+  package-universal:
+    needs: [mpv-universal, python-embed-universal]
     runs-on: windows-latest
     steps:
     - name: Package
       run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-7.2pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-72-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.41pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20250722-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-universal/ffmpeg-git-7.2pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/luajit-2.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/vapoursynth-72-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-universal/mpv-git-0.41pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mcfgthread-20250722-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
         7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.13.5-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-plugin-core-extra-72-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/python-embed-3.13.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/vapoursynth-plugin-core-extra-72-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
@@ -841,11 +842,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: bleeding_edge
+        tag: bleeding_edge-universal
         overwrite: true
         file_glob: true
 
-  python-embed:
+  python-embed-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -858,12 +859,12 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
+        tag: latest-universal
         assets: python-embed*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -872,11 +873,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: python-embed/*pkg*.xz
-        tag: latest
+        tag: latest-universal
         overwrite: true
         file_glob: true
 
-  shaderc:
+  shaderc-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -894,12 +895,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: shaderc*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -908,11 +909,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: shaderc-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  spirv-cross:
+  spirv-cross-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -930,12 +931,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: spirv-cross*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -944,11 +945,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: spirv-cross-dev/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  vapoursynth:
+  vapoursynth-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -961,12 +962,12 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
+        tag: latest-universal
         assets: vapoursynth*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -974,7 +975,7 @@ jobs:
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: vapoursynth*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -983,7 +984,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: vapoursynth/*pkg*.xz
-        tag: latest
+        tag: latest-universal
         overwrite: true
         file_glob: true
     - name: Upload Dev
@@ -991,11 +992,11 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: vapoursynth/*.zst
-        tag: dev
+        tag: dev-universal
         overwrite: true
         file_glob: true
 
-  vulkan:
+  vulkan-universal:
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
@@ -1013,12 +1014,12 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/universal.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
+        tag: dev-universal
         assets: vulkan*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -1027,6 +1028,3087 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: vulkan-dev/*.zst
-        tag: dev
+        tag: dev-universal
+        overwrite: true
+        file_glob: true
+
+
+  ffmpeg-x86-64-v3:
+    needs: [lame-x86-64-v3, libvorbis_aotuv-x86-64-v3, opus-x86-64-v3, ffnvcodec-x86-64-v3, vapoursynth-x86-64-v3, vulkan-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lame-dev-3.100-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffmpeg/*pkg*.xz
+        tag: bleeding_edge-x86-64-v3
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffmpeg/*.zst
+        tag: bleeding_edge-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  ffnvcodec-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: ffnvcodec*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffnvcodec-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  freetype2-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: freetype2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: freetype2-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  fribidi-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: fribidi*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: fribidi-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  harfbuzz-x86-64-v3:
+    needs: [freetype2-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: harfbuzz*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: harfbuzz-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  lame-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: lame*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: lame-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  lcms2-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: lcms2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: lcms2-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libass-x86-64-v3:
+    needs: [freetype2-x86-64-v3, fribidi-x86-64-v3, harfbuzz-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libass*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libass-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libbluray-x86-64-v3:
+    needs: [freetype2-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libbluray*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libbluray-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libdovi-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        # skip building cargo-c
+        # cargo install cargo-c --features=vendored-openssl
+        rustup toolchain install stable-x86_64-pc-windows-gnu
+        rustup default stable-x86_64-pc-windows-gnu
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        7z x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.cargo\bin'
+        curl -OL https://github.com/quietvoid/dovi_tool/archive/refs/tags/libdovi-3.3.2.zip
+        7z x libdovi*.zip
+        cd dovi_tool-libdovi*
+        cd dolby_vision
+        mkdir build
+        set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+        set RUSTFLAGS="-C opt-level=3 -C target-cpu=x86-64-v3"
+        cargo cinstall --manifest-path=Cargo.toml --prefix=/opt --destdir=build --release --library-type staticlib
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libdovi*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdovi-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libdvdcss-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libdvdcss*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdcss-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libdvdnav-x86-64-v3:
+    needs: [libdvdread-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libdvdnav*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdnav-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libdvdread-x86-64-v3:
+    needs: [libdvdcss-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libdvdread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdread-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libogg-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libogg*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libogg-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libplacebo-x86-64-v3:
+    needs: [lcms2-x86-64-v3, libdovi-x86-64-v3, shaderc-x86-64-v3, spirv-cross-x86-64-v3, vulkan-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libplacebo*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libplacebo-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  libvorbis_aotuv-x86-64-v3:
+    needs: [libogg-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: libvorbis_aotuv*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libvorbis_aotuv-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  luajit-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v3
+        assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete Dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: luajit/*pkg*.xz
+        tag: latest-x86-64-v3
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: luajit/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  mpv-x86-64-v3:
+    needs: [ffmpeg-x86-64-v3, luajit-x86-64-v3, libass-x86-64-v3, lcms2-x86-64-v3, libbluray-x86-64-v3, libdovi-x86-64-v3, libdvdnav-x86-64-v3, shaderc-x86-64-v3, spirv-cross-x86-64-v3, vulkan-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-x86-64-v3/ffmpeg-git-dev-7.2pre-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv/*pkg*.xz
+        tag: bleeding_edge-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  mpv-stablelib-x86-64-v3:
+    needs: [luajit-x86-64-v3, libass-x86-64-v3, lcms2-x86-64-v3, libbluray-x86-64-v3, libdovi-x86-64-v3, libdvdnav-x86-64-v3, shaderc-x86-64-v3, spirv-cross-x86-64-v3, vulkan-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv/*pkg*.xz
+        tag: bleeding_edge-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  opus-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: opus*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: opus-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  package-x86-64-v3:
+    needs: [mpv-x86-64-v3, python-embed-x86-64-v3]
+    runs-on: windows-latest
+    steps:
+    - name: Package
+      run: |
+        $date = Get-Date -Format "yyyyMMdd"
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-x86-64-v3/ffmpeg-git-7.2pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/luajit-2.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/vapoursynth-72-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-x86-64-v3/mpv-git-0.41pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mcfgthread-20250722-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        md C:\msys64\opt\bin\portable_config
+        del *.xz
+        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/python-embed-3.13.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/vapoursynth-plugin-core-extra-72-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: All*.7z
+        tag: bleeding_edge-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  python-embed-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v3
+        assets: python-embed*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: python-embed/*pkg*.xz
+        tag: latest-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  shaderc-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: shaderc*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: shaderc-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  spirv-cross-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: spirv-cross*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: spirv-cross-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  vapoursynth-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v3
+        assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete Dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vapoursynth/*pkg*.xz
+        tag: latest-x86-64-v3
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vapoursynth/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+  vulkan-x86-64-v3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v3
+        assets: vulkan*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vulkan-dev/*.zst
+        tag: dev-x86-64-v3
+        overwrite: true
+        file_glob: true
+
+
+  ffmpeg-x86-64-v4:
+    needs: [lame-x86-64-v4, libvorbis_aotuv-x86-64-v4, opus-x86-64-v4, ffnvcodec-x86-64-v4, vapoursynth-x86-64-v4, vulkan-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lame-dev-3.100-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffmpeg/*pkg*.xz
+        tag: bleeding_edge-x86-64-v4
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffmpeg/*.zst
+        tag: bleeding_edge-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  ffnvcodec-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: ffnvcodec*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffnvcodec-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  freetype2-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: freetype2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: freetype2-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  fribidi-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: fribidi*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: fribidi-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  harfbuzz-x86-64-v4:
+    needs: [freetype2-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: harfbuzz*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: harfbuzz-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  lame-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: lame*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: lame-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  lcms2-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: lcms2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: lcms2-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libass-x86-64-v4:
+    needs: [freetype2-x86-64-v4, fribidi-x86-64-v4, harfbuzz-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libass*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libass-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libbluray-x86-64-v4:
+    needs: [freetype2-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libbluray*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libbluray-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libdovi-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        # skip building cargo-c
+        # cargo install cargo-c --features=vendored-openssl
+        rustup toolchain install stable-x86_64-pc-windows-gnu
+        rustup default stable-x86_64-pc-windows-gnu
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        7z x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.cargo\bin'
+        curl -OL https://github.com/quietvoid/dovi_tool/archive/refs/tags/libdovi-3.3.2.zip
+        7z x libdovi*.zip
+        cd dovi_tool-libdovi*
+        cd dolby_vision
+        mkdir build
+        set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+        set RUSTFLAGS="-C opt-level=3 -C target-cpu=x86-64-v4"
+        cargo cinstall --manifest-path=Cargo.toml --prefix=/opt --destdir=build --release --library-type staticlib
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libdovi*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdovi-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libdvdcss-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libdvdcss*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdcss-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libdvdnav-x86-64-v4:
+    needs: [libdvdread-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libdvdnav*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdnav-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libdvdread-x86-64-v4:
+    needs: [libdvdcss-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libdvdread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdread-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libogg-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libogg*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libogg-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libplacebo-x86-64-v4:
+    needs: [lcms2-x86-64-v4, libdovi-x86-64-v4, shaderc-x86-64-v4, spirv-cross-x86-64-v4, vulkan-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libplacebo*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libplacebo-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  libvorbis_aotuv-x86-64-v4:
+    needs: [libogg-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: libvorbis_aotuv*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libvorbis_aotuv-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  luajit-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v4
+        assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete Dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: luajit/*pkg*.xz
+        tag: latest-x86-64-v4
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: luajit/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  mpv-x86-64-v4:
+    needs: [ffmpeg-x86-64-v4, luajit-x86-64-v4, libass-x86-64-v4, lcms2-x86-64-v4, libbluray-x86-64-v4, libdovi-x86-64-v4, libdvdnav-x86-64-v4, shaderc-x86-64-v4, spirv-cross-x86-64-v4, vulkan-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-x86-64-v4/ffmpeg-git-dev-7.2pre-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv/*pkg*.xz
+        tag: bleeding_edge-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  mpv-stablelib-x86-64-v4:
+    needs: [luajit-x86-64-v4, libass-x86-64-v4, lcms2-x86-64-v4, libbluray-x86-64-v4, libdovi-x86-64-v4, libdvdnav-x86-64-v4, shaderc-x86-64-v4, spirv-cross-x86-64-v4, vulkan-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv/*pkg*.xz
+        tag: bleeding_edge-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  opus-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: opus*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: opus-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  package-x86-64-v4:
+    needs: [mpv-x86-64-v4, python-embed-x86-64-v4]
+    runs-on: windows-latest
+    steps:
+    - name: Package
+      run: |
+        $date = Get-Date -Format "yyyyMMdd"
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-x86-64-v4/ffmpeg-git-7.2pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/luajit-2.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/vapoursynth-72-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-x86-64-v4/mpv-git-0.41pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mcfgthread-20250722-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        md C:\msys64\opt\bin\portable_config
+        del *.xz
+        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/python-embed-3.13.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/vapoursynth-plugin-core-extra-72-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: All*.7z
+        tag: bleeding_edge-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  python-embed-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v4
+        assets: python-embed*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: python-embed/*pkg*.xz
+        tag: latest-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  shaderc-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: shaderc*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: shaderc-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  spirv-cross-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: spirv-cross*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: spirv-cross-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  vapoursynth-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-x86-64-v4
+        assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete Dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vapoursynth/*pkg*.xz
+        tag: latest-x86-64-v4
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vapoursynth/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+  vulkan-x86-64-v4:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-x86-64-v4
+        assets: vulkan*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vulkan-dev/*.zst
+        tag: dev-x86-64-v4
+        overwrite: true
+        file_glob: true
+
+
+  ffmpeg-amd-zen4plus:
+    needs: [lame-amd-zen4plus, libvorbis_aotuv-amd-zen4plus, opus-amd-zen4plus, ffnvcodec-amd-zen4plus, vapoursynth-amd-zen4plus, vulkan-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lame-dev-3.100-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffmpeg/*pkg*.xz
+        tag: bleeding_edge-amd-zen4+
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffmpeg/*.zst
+        tag: bleeding_edge-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  ffnvcodec-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: ffnvcodec*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ffnvcodec-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  freetype2-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: freetype2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: freetype2-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  fribidi-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: fribidi*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: fribidi-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  harfbuzz-amd-zen4plus:
+    needs: [freetype2-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: harfbuzz*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: harfbuzz-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  lame-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: lame*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: lame-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  lcms2-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: lcms2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: lcms2-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libass-amd-zen4plus:
+    needs: [freetype2-amd-zen4plus, fribidi-amd-zen4plus, harfbuzz-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libass*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libass-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libbluray-amd-zen4plus:
+    needs: [freetype2-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libbluray*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libbluray-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libdovi-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        # skip building cargo-c
+        # cargo install cargo-c --features=vendored-openssl
+        rustup toolchain install stable-x86_64-pc-windows-gnu
+        rustup default stable-x86_64-pc-windows-gnu
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        7z x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.cargo\bin'
+        curl -OL https://github.com/quietvoid/dovi_tool/archive/refs/tags/libdovi-3.3.2.zip
+        7z x libdovi*.zip
+        cd dovi_tool-libdovi*
+        cd dolby_vision
+        mkdir build
+        set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+        set RUSTFLAGS="-C opt-level=3 -C target-cpu=x86-64-v4"
+        cargo cinstall --manifest-path=Cargo.toml --prefix=/opt --destdir=build --release --library-type staticlib
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdovi-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libdovi*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdovi-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libdvdcss-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libdvdcss*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdcss-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libdvdnav-amd-zen4plus:
+    needs: [libdvdread-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libdvdnav*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdnav-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libdvdread-amd-zen4plus:
+    needs: [libdvdcss-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libdvdread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libdvdread-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libogg-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libogg*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libogg-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libplacebo-amd-zen4plus:
+    needs: [lcms2-amd-zen4plus, libdovi-amd-zen4plus, shaderc-amd-zen4plus, spirv-cross-amd-zen4plus, vulkan-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libplacebo*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libplacebo-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  libvorbis_aotuv-amd-zen4plus:
+    needs: [libogg-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: libvorbis_aotuv*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libvorbis_aotuv-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  luajit-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-amd-zen4+
+        assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete Dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: luajit/*pkg*.xz
+        tag: latest-amd-zen4+
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: luajit/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  mpv-amd-zen4plus:
+    needs: [ffmpeg-amd-zen4plus, luajit-amd-zen4plus, libass-amd-zen4plus, lcms2-amd-zen4plus, libbluray-amd-zen4plus, libdovi-amd-zen4plus, libdvdnav-amd-zen4plus, shaderc-amd-zen4plus, spirv-cross-amd-zen4plus, vulkan-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-amd-zen4+/ffmpeg-git-dev-7.2pre-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv/*pkg*.xz
+        tag: bleeding_edge-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  mpv-stablelib-amd-zen4plus:
+    needs: [luajit-amd-zen4plus, libass-amd-zen4plus, lcms2-amd-zen4plus, libbluray-amd-zen4plus, libdovi-amd-zen4plus, libdvdnav-amd-zen4plus, shaderc-amd-zen4plus, spirv-cross-amd-zen4plus, vulkan-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        CPLUS_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/luajit-dev-2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.13.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-stablelib'
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv/*pkg*.xz
+        tag: bleeding_edge-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  opus-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: opus*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: opus-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  package-amd-zen4plus:
+    needs: [mpv-amd-zen4plus, python-embed-amd-zen4plus]
+    runs-on: windows-latest
+    steps:
+    - name: Package
+      run: |
+        $date = Get-Date -Format "yyyyMMdd"
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-amd-zen4+/ffmpeg-git-7.2pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/luajit-2.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/vapoursynth-72-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge-amd-zen4+/mpv-git-0.41pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mcfgthread-20250722-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        md C:\msys64\opt\bin\portable_config
+        del *.xz
+        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/python-embed-3.13.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/vapoursynth-plugin-core-extra-72-1-x86_64.pkg.tar.xz
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+        copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: All*.7z
+        tag: bleeding_edge-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  python-embed-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-amd-zen4+
+        assets: python-embed*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: python-embed/*pkg*.xz
+        tag: latest-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  shaderc-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: shaderc*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: shaderc-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  spirv-cross-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: spirv-cross*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: spirv-cross-dev/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  vapoursynth-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest-amd-zen4+
+        assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete Dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vapoursynth/*pkg*.xz
+        tag: latest-amd-zen4+
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vapoursynth/*.zst
+        tag: dev-amd-zen4+
+        overwrite: true
+        file_glob: true
+
+  vulkan-amd-zen4plus:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-amd-zen4+
+        assets: vulkan*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vulkan-dev/*.zst
+        tag: dev-amd-zen4+
         overwrite: true
         file_glob: true
