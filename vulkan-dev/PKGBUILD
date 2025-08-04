@@ -11,6 +11,7 @@ source=("https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/vulkan
 md5sums=('SKIP' 'SKIP')
 
 build() {
+  echo $CFLAGS
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"

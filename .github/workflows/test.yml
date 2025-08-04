@@ -1,0 +1,43 @@
+name: test
+on:
+  workflow_dispatch:
+
+jobs:
+  vulkan:
+    strategy:
+      matrix:
+        cpu: [universal, x86-64-v3, x86-64-v4, amd-zen-4+]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: D:\msys64
+        key: mcf_20250722_15.1.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v4
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/{{ matrix.cpu }}.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev-${{ matrix.cpu }}
+        assets: vulkan*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vulkan-dev/*.zst
+        tag: dev-${{ matrix.cpu }}
+        overwrite: true
+        file_glob: true
