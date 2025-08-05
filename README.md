@@ -2,6 +2,11 @@
 
 ## Installation
 Grab and extract the All-in-One archive from <https://github.com/nyfair/mpv-win64/releases>  
+**Bleeding Edge** weekly build is based on the git trunk code of mpv and libplacebo. It includes the newest features and bug fixes but may be less stable  
+**Latest** build is based on the stable releases of all libraries  
+**x86-64-v3** build is optimized for CPUs that support the AVX2 instruction set, this includes most CPUs after 2013  
+**x86-64-v4** build is optimized for CPUs that support the AVX512 instruction set, it is recommends for Intel CPUs after 2016  
+**amd-zen4+** build is specifically optimized for AMD Zen4(7000 series) and newer CPUs  
 You can also manually install these pacman-based packages if you are using MSYS2  
 All my builds are portable and compiled with VapourSynth support, these plugins will have no effect if MPV can't find python environment
 
