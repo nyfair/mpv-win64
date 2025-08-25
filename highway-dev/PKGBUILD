@@ -1,0 +1,23 @@
+pkgname=highway-dev
+pkgver=1.3.0
+pkgrel=1
+pkgdesc='A C++ library that provides portable SIMD/vector intrinsics'
+arch=('x86_64')
+url="https://github.com/google/highway/"
+license=('Apache')
+source=("https://github.com/google/highway/archive/refs/tags/$pkgver.tar.gz")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/highway-$pkgver
+  rm -rf build && mkdir build && cd build
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DHWY_ENABLE_CONTRIB=OFF -DHWY_ENABLE_EXAMPLES=OFF -DHWY_ENABLE_TESTS=OFF -DCMAKE_GNUtoMS=OFF \
+    -DCMAKE_C_FLAGS=" -masm=att" -DCMAKE_CXX_FLAGS=" -masm=att"
+  cmake --build .
+}
+  
+package() {
+  cd $srcdir/highway-$pkgver/build
+  cmake --install . --prefix=$pkgdir/opt
+}
