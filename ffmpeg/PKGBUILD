@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(ffmpeg-dev ffmpeg)
-pkgver=7.1.1
+pkgver=8.0
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
@@ -13,17 +13,18 @@ md5sums=('SKIP')
 build() {
   CARGS="--target-os=mingw32 --arch=x86_64 --disable-debug --disable-doc \
          --enable-gpl --enable-version3 --enable-nonfree --enable-zlib --pkg-config-flags=--static \
-         --disable-ffplay --disable-ffprobe --disable-avdevice --enable-shared \
+         --disable-ffplay --disable-ffprobe --enable-shared \
          --disable-pthreads --enable-w32threads"
 }
 
 package_ffmpeg-dev() {
   cd $srcdir/ffmpeg-$pkgver
-  export CFLAGS="-masm=att ${CFLAGS}"
   ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
     --disable-mediafoundation --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
-    --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth
+    --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth \
+    --enable-lcms2 --enable-libwebp --enable-libjxl \
+    --extra-cflags=" -masm=att" --extra-ldflags=" -static -static-libgcc -static-libstdc++"
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }

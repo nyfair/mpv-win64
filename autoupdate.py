@@ -20,7 +20,9 @@ pkgs['python-embed'] = x['Python']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
-for p in ['ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'lame', 'lcms2', 'libass', 'libbluray', 'libdovi', 'libdvdcss', 'libdvdread', 'libdvdnav', 'libogg', 'libplacebo', 'opus', 'shaderc', 'spirv-cross', 'vulkan']:
+for p in ['brotli', 'ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'highway', 'lame', 'lcms2', 'libass',
+          'libbluray', 'libdovi', 'libdvdcss', 'libdvdread', 'libdvdnav', 'libogg', 'libjxl', 'libplacebo',
+          'libwebp', 'opus', 'shaderc', 'spirv-cross', 'vulkan']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:

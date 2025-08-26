@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(ffmpeg-git-dev ffmpeg-git)
-pkgver=7.2pre
+pkgver=8.1pre
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
@@ -20,11 +20,12 @@ build() {
 package_ffmpeg-git-dev() {
   conflicts=('ffmpeg-dev')
   cd $srcdir/FFmpeg
-  export CFLAGS="-masm=att ${CFLAGS}"
   ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
     --disable-mediafoundation --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
-    --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth
+    --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth \
+    --enable-lcms2 --enable-libwebp --enable-libjxl \
+    --extra-cflags=" -masm=att" --extra-ldflags=" -static -static-libgcc -static-libstdc++"
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }

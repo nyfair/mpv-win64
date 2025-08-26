@@ -1,19 +1,17 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=harfbuzz-dev
-pkgver=11.4.1
+pkgver=11.4.4
 pkgrel=1
 pkgdesc='OpenType text shaping engine'
 arch=('x86_64')
 url="https://github.com/harfbuzz/harfbuzz/"
 makedepends=('freetype2-dev')
 license=('GPL')
-source=()
-md5sums=()
+source=("https://github.com/harfbuzz/harfbuzz/releases/download/$pkgver/harfbuzz-$pkgver.tar.xz")
+md5sums=('SKIP')
 
 build() {
-  cd $srcdir
-  git clone --branch $pkgver https://github.com/harfbuzz/harfbuzz
-  cd $srcdir/harfbuzz
+  cd $srcdir/harfbuzz-$pkgver
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Dtests=disabled -Ddocs=disabled -Dbenchmark=disabled
@@ -22,7 +20,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/harfbuzz/work
+  cd $srcdir/harfbuzz-$pkgver/work
   DESTDIR=$pkgdir ninja install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
