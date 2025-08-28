@@ -20,12 +20,12 @@ build() {
 package_ffmpeg-git-dev() {
   conflicts=('ffmpeg-dev')
   cd $srcdir/FFmpeg
-  ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
+  ./configure prefix=/opt $CARGS --extra-libs="-lstdc++ -lssp" \
+    --extra-cflags="-masm=att" --extra-ldflags="-static -static-libgcc -static-libstdc++" \
     --disable-mediafoundation --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
     --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth \
-    --enable-lcms2 --enable-libwebp --enable-libjxl \
-    --extra-cflags=" -masm=att" --extra-ldflags=" -static -static-libgcc -static-libstdc++"
+    --enable-lcms2 --enable-libwebp --enable-libjxl
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
