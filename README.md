@@ -52,6 +52,8 @@ The FFmpeg and MPV library were built with the following libraries
 - shaderc/spirv/libplacebo: D3D11 & Vulkan Context
 - libbluray/libdvdnav/libdvdread/libdvdcss: Parsing BD/DVD
 - libdovi: Parsing Dolby Vision Metadata
+- libwebp: WebP Image Encoding/Decoding
+- libjxl/highway/brotli: JPEG XL Image Encoding/Decoding
 
 ## TODO ???
 ### Build FFmpeg with x264/x265/rav1e/SVT-AV1/VVenC for video encoding
