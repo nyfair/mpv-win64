@@ -51,7 +51,6 @@ The FFmpeg and MPV library were built with the following libraries
 - vapoursynth: VapourSynth Plugin and VSS Video Source
 - shaderc/spirv/libplacebo: D3D11 & Vulkan Context
 - libbluray/libdvdnav/libdvdread/libdvdcss: Parsing BD/DVD
-- libdovi: Parsing Dolby Vision Metadata
 - libwebp: WebP Image Encoding/Decoding
 - libjxl/highway/brotli: JPEG XL Image Encoding/Decoding
 

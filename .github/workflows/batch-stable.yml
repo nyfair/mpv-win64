@@ -104,7 +104,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
@@ -256,7 +255,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
@@ -408,7 +406,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
@@ -560,7 +557,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
