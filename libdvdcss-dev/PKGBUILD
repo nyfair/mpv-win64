@@ -6,7 +6,7 @@ pkgdesc='Portable abstraction library for DVD decryption'
 arch=('x86_64')
 url="https://www.videolan.org/developers/libdvdcss.html"
 license=('GPL')
-source=("https://download.videolan.org/pub/libdvdcss/$pkgver/libdvdcss-$pkgver.tar.bz2")
+source=("https://download.videolan.org/pub/libdvdcss/$pkgver/libdvdcss-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {

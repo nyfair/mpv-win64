@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://www.videolan.org/developers/libdvdnav.html"
 makedepends=('libdvdcss-dev')
 license=('GPL')
-source=("https://download.videolan.org/pub/videolan/libdvdread/$pkgver/libdvdread-$pkgver.tar.bz2")
+source=("https://download.videolan.org/pub/videolan/libdvdread/$pkgver/libdvdread-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {
