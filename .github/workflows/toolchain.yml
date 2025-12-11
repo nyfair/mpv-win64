@@ -13,11 +13,11 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20251121_16.0.0_x64-ucrt
+        key: mcf_20251205_16.0.0_x64-ucrt
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        curl --ssl-no-revoke -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20251121_16.0.0_x64-ucrt_18c30fbc93c3722ca59211658b0068c2f746ae36.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"
+        curl --ssl-no-revoke -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20251205_16.0.0_x64-ucrt_6b5bdaf8243011cf38ae7da54c8b7d2e98b9614b.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
