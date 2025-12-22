@@ -71,7 +71,7 @@ jobs:
 
   mpv-universal:
     needs: [ffmpeg-universal]
-    runs-on: windows-latests
+    runs-on: windows-latest
     steps:
     - uses: actions/cache@v4
       id: cache
@@ -134,7 +134,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/ffmpeg-8.0.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/vapoursynth-73-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mpv-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mpv-0.41.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mcfgthread-20251205-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
@@ -285,7 +285,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/ffmpeg-8.0.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/vapoursynth-73-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mpv-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mpv-0.41.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mcfgthread-20251205-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
@@ -436,7 +436,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/ffmpeg-8.0.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/vapoursynth-73-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mpv-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mpv-0.41.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mcfgthread-20251205-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
@@ -587,7 +587,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/ffmpeg-8.0.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/vapoursynth-73-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mpv-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mpv-0.41.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mcfgthread-20251205-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
