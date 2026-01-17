@@ -25,7 +25,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/opus-dev-1.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/opus-dev-1.6.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vulkan-dev-1.4.335.0-1-x86_64.pkg.tar.zst
@@ -176,7 +176,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/opus-dev-1.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/opus-dev-1.6.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vulkan-dev-1.4.335.0-1-x86_64.pkg.tar.zst
@@ -327,7 +327,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/opus-dev-1.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/opus-dev-1.6.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vulkan-dev-1.4.335.0-1-x86_64.pkg.tar.zst
@@ -478,7 +478,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/opus-dev-1.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/opus-dev-1.6.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vulkan-dev-1.4.335.0-1-x86_64.pkg.tar.zst
