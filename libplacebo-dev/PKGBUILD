@@ -7,13 +7,15 @@ arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
 makedepends=('lcms2-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev')
 license=('LGPL')
-source=("git+https://github.com/haasn/libplacebo#tag=v$pkgver")
-md5sums=('SKIP')
+source=("git+https://github.com/haasn/libplacebo#tag=v$pkgver"
+        vulkan-python-xml.patch)
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libplacebo*
   git submodule update --init --recursive
   mkdir work
+  patch -Np1 -i "${srcdir}/vulkan-python-xml.patch"
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
   cd work
