@@ -6,12 +6,12 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - uses: fawazahmed0/action-debug@main

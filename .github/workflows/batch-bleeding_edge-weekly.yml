@@ -9,14 +9,14 @@ jobs:
   brotli-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -46,14 +46,14 @@ jobs:
     needs: [lame-universal, libvorbis_aotuv-universal, opus-universal, ffnvcodec-universal, vapoursynth-universal, vulkan-universal, libjxl-universal, libwebp-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -95,14 +95,14 @@ jobs:
   ffnvcodec-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -131,14 +131,14 @@ jobs:
   freetype2-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -167,14 +167,14 @@ jobs:
   fribidi-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -204,14 +204,14 @@ jobs:
     needs: [freetype2-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -242,14 +242,14 @@ jobs:
   highway-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -278,14 +278,14 @@ jobs:
   lame-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -314,14 +314,14 @@ jobs:
   lcms2-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -351,14 +351,14 @@ jobs:
     needs: [freetype2-universal, fribidi-universal, harfbuzz-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -392,14 +392,14 @@ jobs:
     needs: [freetype2-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -430,14 +430,14 @@ jobs:
   libdvdcss-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -467,14 +467,14 @@ jobs:
     needs: [libdvdread-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -507,14 +507,14 @@ jobs:
     needs: [libdvdcss-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -546,14 +546,14 @@ jobs:
     needs: [brotli-universal, highway-universal, lcms2-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -586,14 +586,14 @@ jobs:
   libogg-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -623,14 +623,14 @@ jobs:
     needs: [lcms2-universal, shaderc-universal, spirv-cross-universal, vulkan-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -665,14 +665,14 @@ jobs:
     needs: [libogg-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -703,14 +703,14 @@ jobs:
   libwebp-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -739,14 +739,14 @@ jobs:
   luajit-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -792,14 +792,14 @@ jobs:
     needs: [ffmpeg-universal, luajit-universal, libass-universal, lcms2-universal, libbluray-universal, libdvdnav-universal, shaderc-universal, spirv-cross-universal, vulkan-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -838,14 +838,14 @@ jobs:
     needs: [luajit-universal, libass-universal, lcms2-universal, libbluray-universal, libdvdnav-universal, shaderc-universal, spirv-cross-universal, vulkan-universal]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -883,14 +883,14 @@ jobs:
   opus-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -950,14 +950,14 @@ jobs:
   python-embed-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
@@ -981,14 +981,14 @@ jobs:
   shaderc-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1017,14 +1017,14 @@ jobs:
   spirv-cross-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1053,14 +1053,14 @@ jobs:
   vapoursynth-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
@@ -1100,14 +1100,14 @@ jobs:
   vulkan-universal:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1136,14 +1136,14 @@ jobs:
   brotli-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1173,14 +1173,14 @@ jobs:
     needs: [lame-x86-64-v3, libvorbis_aotuv-x86-64-v3, opus-x86-64-v3, ffnvcodec-x86-64-v3, vapoursynth-x86-64-v3, vulkan-x86-64-v3, libjxl-x86-64-v3, libwebp-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1222,14 +1222,14 @@ jobs:
   ffnvcodec-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1258,14 +1258,14 @@ jobs:
   freetype2-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1294,14 +1294,14 @@ jobs:
   fribidi-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1331,14 +1331,14 @@ jobs:
     needs: [freetype2-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1369,14 +1369,14 @@ jobs:
   highway-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1405,14 +1405,14 @@ jobs:
   lame-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1441,14 +1441,14 @@ jobs:
   lcms2-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1478,14 +1478,14 @@ jobs:
     needs: [freetype2-x86-64-v3, fribidi-x86-64-v3, harfbuzz-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1519,14 +1519,14 @@ jobs:
     needs: [freetype2-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1557,14 +1557,14 @@ jobs:
   libdvdcss-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1594,14 +1594,14 @@ jobs:
     needs: [libdvdread-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1634,14 +1634,14 @@ jobs:
     needs: [libdvdcss-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1673,14 +1673,14 @@ jobs:
     needs: [brotli-x86-64-v3, highway-x86-64-v3, lcms2-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1713,14 +1713,14 @@ jobs:
   libogg-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1750,14 +1750,14 @@ jobs:
     needs: [lcms2-x86-64-v3, shaderc-x86-64-v3, spirv-cross-x86-64-v3, vulkan-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1792,14 +1792,14 @@ jobs:
     needs: [libogg-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1830,14 +1830,14 @@ jobs:
   libwebp-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1866,14 +1866,14 @@ jobs:
   luajit-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1919,14 +1919,14 @@ jobs:
     needs: [ffmpeg-x86-64-v3, luajit-x86-64-v3, libass-x86-64-v3, lcms2-x86-64-v3, libbluray-x86-64-v3, libdvdnav-x86-64-v3, shaderc-x86-64-v3, spirv-cross-x86-64-v3, vulkan-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -1965,14 +1965,14 @@ jobs:
     needs: [luajit-x86-64-v3, libass-x86-64-v3, lcms2-x86-64-v3, libbluray-x86-64-v3, libdvdnav-x86-64-v3, shaderc-x86-64-v3, spirv-cross-x86-64-v3, vulkan-x86-64-v3]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -2010,14 +2010,14 @@ jobs:
   opus-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2077,14 +2077,14 @@ jobs:
   python-embed-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
@@ -2108,14 +2108,14 @@ jobs:
   shaderc-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2144,14 +2144,14 @@ jobs:
   spirv-cross-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2180,14 +2180,14 @@ jobs:
   vapoursynth-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
@@ -2227,14 +2227,14 @@ jobs:
   vulkan-x86-64-v3:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2264,14 +2264,14 @@ jobs:
   brotli-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2301,14 +2301,14 @@ jobs:
     needs: [lame-x86-64-v4, libvorbis_aotuv-x86-64-v4, opus-x86-64-v4, ffnvcodec-x86-64-v4, vapoursynth-x86-64-v4, vulkan-x86-64-v4, libjxl-x86-64-v4, libwebp-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2350,14 +2350,14 @@ jobs:
   ffnvcodec-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2386,14 +2386,14 @@ jobs:
   freetype2-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2422,14 +2422,14 @@ jobs:
   fribidi-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2459,14 +2459,14 @@ jobs:
     needs: [freetype2-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2497,14 +2497,14 @@ jobs:
   highway-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2533,14 +2533,14 @@ jobs:
   lame-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2569,14 +2569,14 @@ jobs:
   lcms2-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2606,14 +2606,14 @@ jobs:
     needs: [freetype2-x86-64-v4, fribidi-x86-64-v4, harfbuzz-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2647,14 +2647,14 @@ jobs:
     needs: [freetype2-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2685,14 +2685,14 @@ jobs:
   libdvdcss-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2722,14 +2722,14 @@ jobs:
     needs: [libdvdread-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2762,14 +2762,14 @@ jobs:
     needs: [libdvdcss-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2801,14 +2801,14 @@ jobs:
     needs: [brotli-x86-64-v4, highway-x86-64-v4, lcms2-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2841,14 +2841,14 @@ jobs:
   libogg-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2878,14 +2878,14 @@ jobs:
     needs: [lcms2-x86-64-v4, shaderc-x86-64-v4, spirv-cross-x86-64-v4, vulkan-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2920,14 +2920,14 @@ jobs:
     needs: [libogg-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2958,14 +2958,14 @@ jobs:
   libwebp-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2994,14 +2994,14 @@ jobs:
   luajit-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3047,14 +3047,14 @@ jobs:
     needs: [ffmpeg-x86-64-v4, luajit-x86-64-v4, libass-x86-64-v4, lcms2-x86-64-v4, libbluray-x86-64-v4, libdvdnav-x86-64-v4, shaderc-x86-64-v4, spirv-cross-x86-64-v4, vulkan-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -3093,14 +3093,14 @@ jobs:
     needs: [luajit-x86-64-v4, libass-x86-64-v4, lcms2-x86-64-v4, libbluray-x86-64-v4, libdvdnav-x86-64-v4, shaderc-x86-64-v4, spirv-cross-x86-64-v4, vulkan-x86-64-v4]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -3138,14 +3138,14 @@ jobs:
   opus-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3205,14 +3205,14 @@ jobs:
   python-embed-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
@@ -3236,14 +3236,14 @@ jobs:
   shaderc-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3272,14 +3272,14 @@ jobs:
   spirv-cross-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3308,14 +3308,14 @@ jobs:
   vapoursynth-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
@@ -3355,14 +3355,14 @@ jobs:
   vulkan-x86-64-v4:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3391,14 +3391,14 @@ jobs:
   brotli-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3428,14 +3428,14 @@ jobs:
     needs: [lame-amd-zen4plus, libvorbis_aotuv-amd-zen4plus, opus-amd-zen4plus, ffnvcodec-amd-zen4plus, vapoursynth-amd-zen4plus, vulkan-amd-zen4plus, libjxl-amd-zen4plus, libwebp-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3477,14 +3477,14 @@ jobs:
   ffnvcodec-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3513,14 +3513,14 @@ jobs:
   freetype2-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3549,14 +3549,14 @@ jobs:
   fribidi-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3586,14 +3586,14 @@ jobs:
     needs: [freetype2-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3624,14 +3624,14 @@ jobs:
   highway-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3660,14 +3660,14 @@ jobs:
   lame-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3696,14 +3696,14 @@ jobs:
   lcms2-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3733,14 +3733,14 @@ jobs:
     needs: [freetype2-amd-zen4plus, fribidi-amd-zen4plus, harfbuzz-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3774,14 +3774,14 @@ jobs:
     needs: [freetype2-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3812,14 +3812,14 @@ jobs:
   libdvdcss-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3849,14 +3849,14 @@ jobs:
     needs: [libdvdread-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3889,14 +3889,14 @@ jobs:
     needs: [libdvdcss-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3928,14 +3928,14 @@ jobs:
     needs: [brotli-amd-zen4plus, highway-amd-zen4plus, lcms2-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -3968,14 +3968,14 @@ jobs:
   libogg-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4005,14 +4005,14 @@ jobs:
     needs: [lcms2-amd-zen4plus, shaderc-amd-zen4plus, spirv-cross-amd-zen4plus, vulkan-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4047,14 +4047,14 @@ jobs:
     needs: [libogg-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4085,14 +4085,14 @@ jobs:
   libwebp-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4121,14 +4121,14 @@ jobs:
   luajit-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4174,14 +4174,14 @@ jobs:
     needs: [ffmpeg-amd-zen4plus, luajit-amd-zen4plus, libass-amd-zen4plus, lcms2-amd-zen4plus, libbluray-amd-zen4plus, libdvdnav-amd-zen4plus, shaderc-amd-zen4plus, spirv-cross-amd-zen4plus, vulkan-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -4220,14 +4220,14 @@ jobs:
     needs: [luajit-amd-zen4plus, libass-amd-zen4plus, lcms2-amd-zen4plus, libbluray-amd-zen4plus, libdvdnav-amd-zen4plus, shaderc-amd-zen4plus, spirv-cross-amd-zen4plus, vulkan-amd-zen4plus]
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include:/opt/include/vapoursynth
@@ -4265,14 +4265,14 @@ jobs:
   opus-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4332,14 +4332,14 @@ jobs:
   python-embed-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
@@ -4363,14 +4363,14 @@ jobs:
   shaderc-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4399,14 +4399,14 @@ jobs:
   spirv-cross-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -4435,14 +4435,14 @@ jobs:
   vapoursynth-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       run: |
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
@@ -4482,14 +4482,14 @@ jobs:
   vulkan-amd-zen4plus:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: cache
       with:
         path: D:\msys64
         key: mcf_20260121_16.0.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
