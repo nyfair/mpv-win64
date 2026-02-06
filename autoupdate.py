@@ -22,8 +22,9 @@ pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
 for p in ['brotli', 'ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'highway', 'lame', 'lcms2', 'libass',
           'libbluray', 'libdvdcss', 'libdvdread', 'libdvdnav', 'libogg', 'libjxl', 'libplacebo',
-          'libwebp', 'opus', 'shaderc', 'spirv-cross', 'vulkan']:
+          'libwebp', 'opus', 'shaderc', 'spirv-cross']:
   pkgs['%s-dev' % p] = x[p]
+pkgs['vulkan-dev'] = x['spirv-cross']
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
     for l in f:
