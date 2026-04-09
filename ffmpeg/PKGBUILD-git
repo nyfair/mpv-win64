@@ -32,7 +32,7 @@ package_ffmpeg-git-dev() {
 
 package_ffmpeg-git() {
   conflicts=('ffmpeg')
-  depends=('vapoursynth' 'mcfgthread')
+  depends=('mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install

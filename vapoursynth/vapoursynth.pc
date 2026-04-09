@@ -4,5 +4,5 @@ includedir=/opt/include/vapoursynth
 Name: vapoursynth
 Description:
 Version: _ver
-Libs: -L${libdir} -lVapourSynth
+Libs: -L${libdir} -lvapoursynth
 Cflags: -I${includedir}

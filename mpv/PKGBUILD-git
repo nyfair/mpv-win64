@@ -25,12 +25,12 @@ build() {
   cd $srcdir/mpv
   sed -i 's/ .. exesuf//g'  player/lua/ytdl_hook.lua
   export LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
-  meson setup build --buildtype=release -Dprefix=/opt -Ddvdnav=enabled 
+  meson setup build --buildtype=release -Dprefix=/opt -Ddvdnav=enabled
   meson compile -C build
 }
 
 package() {
-  depends=('ffmpeg-git' 'luajit' 'vapoursynth' 'mcfgthread')
+  depends=('ffmpeg-git' 'luajit' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
   cd $srcdir/mpv/build

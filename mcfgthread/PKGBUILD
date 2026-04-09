@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=mcfgthread
-pkgver=20260326
+pkgver=20260407
 pkgrel=1
 pkgdesc='MCF thread model'
 arch=('x86_64')
@@ -58,10 +58,6 @@ build() {
   rm lib/libcharset*
   rm lib/libiconv*
 
-  #Remove libmangle-git
-  rm include/libmangle*
-  rm lib/libmangle*
-
   #Remove libsystre
   rm include/regex.h
   rm lib/libgnurx*
@@ -71,10 +67,6 @@ build() {
   #Remove libtasn1
   rm include/libtasn1*
   rm lib/libtasn1*
-
-  #Remove libtre-git
-  rm -rf include/tre
-  rm lib/libtre*
 
   #Remove lua and tolua
   rm include/lauxlib.h
