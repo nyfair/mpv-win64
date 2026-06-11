@@ -11,7 +11,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -77,7 +77,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -134,13 +134,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/ffmpeg-8.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mpv-0.41.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mcfgthread-20260521-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mcfgthread-20260605-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
         7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/python-embed-3.14.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/python-embed-3.14.6-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
@@ -160,7 +160,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -226,7 +226,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -283,13 +283,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/ffmpeg-8.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mpv-0.41.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mcfgthread-20260521-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mcfgthread-20260605-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
         7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/python-embed-3.14.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/python-embed-3.14.6-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
@@ -309,7 +309,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -375,7 +375,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -432,13 +432,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/ffmpeg-8.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mpv-0.41.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mcfgthread-20260521-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mcfgthread-20260605-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
         7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/python-embed-3.14.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/python-embed-3.14.6-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
@@ -458,7 +458,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -524,7 +524,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20260521_16.1.1_x64-ucrt
+        key: mcf_20260605_16.1.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -581,13 +581,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/ffmpeg-8.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mpv-0.41.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mcfgthread-20260521-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mcfgthread-20260605-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
         7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/python-embed-3.14.5-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/python-embed-3.14.6-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
