@@ -16,7 +16,6 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
 pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
 # pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
-pkgs['python-embed'] = x['Python']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']

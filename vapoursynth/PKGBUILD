@@ -1,21 +1,21 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(vapoursynth-dev vapoursynth)
+pkgname=vapoursynth-dev
 pkgver=77
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
-source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.zip")
+source=("vapoursynth-$pkgver-cp312-abi3-win_amd64.whl")
 options=(!strip)
 md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  bsdtar xvf wheel/*cp312*
+  bsdtar xvf *.whl
 }
 
-package_vapoursynth-dev() {
+package() {
   cd $srcdir
   mkdir -p $pkgdir/opt/include
   cp -r vapoursynth/include $pkgdir/opt/include/vapoursynth
@@ -25,14 +25,4 @@ package_vapoursynth-dev() {
 
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
-}
-
-package_vapoursynth() {
-  optdepends=('python-embed>=3.12')
-  depends=('vapoursynth')
-  export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/bin
-  cp -r $srcdir/vapoursynth/* $pkgdir/opt/bin
-  cd $pkgdir/opt/bin
-  rm -rf include *.pdb
 }

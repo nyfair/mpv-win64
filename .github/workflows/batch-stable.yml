@@ -138,10 +138,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
     - name: Upload
@@ -287,10 +283,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
     - name: Upload
@@ -436,10 +428,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
     - name: Upload
@@ -585,10 +573,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-withoutPython-${date}.7z All-in-One-MPV-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
     - name: Upload

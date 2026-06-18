@@ -917,7 +917,7 @@ jobs:
         file_glob: true
 
   package-universal:
-    needs: [mpv-universal, python-embed-universal]
+    needs: [mpv-universal]
     runs-on: windows-latest
     steps:
     - name: Package
@@ -930,10 +930,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
     - name: Upload
@@ -942,37 +938,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
         tag: bleeding_edge-universal
-        overwrite: true
-        file_glob: true
-
-  python-embed-universal:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/cache@v5
-      id: cache
-      with:
-        path: D:\msys64
-        key: mcf_20260605_16.1.1_x64-ucrt
-    - name: Prepare
-      run: git config --global core.autocrlf false
-    - uses: actions/checkout@v6
-    - name: Build
-      run: |
-        D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-universal
-        assets: python-embed*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: python-embed/*pkg*.xz
-        tag: latest-universal
         overwrite: true
         file_glob: true
 
@@ -1061,16 +1026,10 @@ jobs:
     - uses: actions/checkout@v6
     - name: Build
       run: |
+        cd vapoursynth
+        pip download vapoursynth
         D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
     - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-universal
-        assets: vapoursynth*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -1079,14 +1038,6 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*pkg*.xz
-        tag: latest-universal
-        overwrite: true
-        file_glob: true
-    - name: Upload Dev
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -2042,7 +1993,7 @@ jobs:
         file_glob: true
 
   package-x86-64-v3:
-    needs: [mpv-x86-64-v3, python-embed-x86-64-v3]
+    needs: [mpv-x86-64-v3]
     runs-on: windows-latest
     steps:
     - name: Package
@@ -2055,10 +2006,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
     - name: Upload
@@ -2067,37 +2014,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
         tag: bleeding_edge-x86-64-v3
-        overwrite: true
-        file_glob: true
-
-  python-embed-x86-64-v3:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/cache@v5
-      id: cache
-      with:
-        path: D:\msys64
-        key: mcf_20260605_16.1.1_x64-ucrt
-    - name: Prepare
-      run: git config --global core.autocrlf false
-    - uses: actions/checkout@v6
-    - name: Build
-      run: |
-        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-x86-64-v3
-        assets: python-embed*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: python-embed/*pkg*.xz
-        tag: latest-x86-64-v3
         overwrite: true
         file_glob: true
 
@@ -2186,16 +2102,10 @@ jobs:
     - uses: actions/checkout@v6
     - name: Build
       run: |
+        cd vapoursynth
+        pip download vapoursynth
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
     - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-x86-64-v3
-        assets: vapoursynth*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -2204,14 +2114,6 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*pkg*.xz
-        tag: latest-x86-64-v3
-        overwrite: true
-        file_glob: true
-    - name: Upload Dev
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -3168,7 +3070,7 @@ jobs:
         file_glob: true
 
   package-x86-64-v4:
-    needs: [mpv-x86-64-v4, python-embed-x86-64-v4]
+    needs: [mpv-x86-64-v4]
     runs-on: windows-latest
     steps:
     - name: Package
@@ -3181,10 +3083,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
     - name: Upload
@@ -3193,37 +3091,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
         tag: bleeding_edge-x86-64-v4
-        overwrite: true
-        file_glob: true
-
-  python-embed-x86-64-v4:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/cache@v5
-      id: cache
-      with:
-        path: D:\msys64
-        key: mcf_20260605_16.1.1_x64-ucrt
-    - name: Prepare
-      run: git config --global core.autocrlf false
-    - uses: actions/checkout@v6
-    - name: Build
-      run: |
-        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-x86-64-v4
-        assets: python-embed*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: python-embed/*pkg*.xz
-        tag: latest-x86-64-v4
         overwrite: true
         file_glob: true
 
@@ -3312,16 +3179,10 @@ jobs:
     - uses: actions/checkout@v6
     - name: Build
       run: |
+        cd vapoursynth
+        pip download vapoursynth
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
     - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-x86-64-v4
-        assets: vapoursynth*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -3330,14 +3191,6 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*pkg*.xz
-        tag: latest-x86-64-v4
-        overwrite: true
-        file_glob: true
-    - name: Upload Dev
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -4293,7 +4146,7 @@ jobs:
         file_glob: true
 
   package-amd-zen4plus:
-    needs: [mpv-amd-zen4plus, python-embed-amd-zen4plus]
+    needs: [mpv-amd-zen4plus]
     runs-on: windows-latest
     steps:
     - name: Package
@@ -4306,10 +4159,6 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
-        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/python-embed-3.14.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
     - name: Upload
@@ -4318,37 +4167,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
         tag: bleeding_edge-amd-zen4+
-        overwrite: true
-        file_glob: true
-
-  python-embed-amd-zen4plus:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/cache@v5
-      id: cache
-      with:
-        path: D:\msys64
-        key: mcf_20260605_16.1.1_x64-ucrt
-    - name: Prepare
-      run: git config --global core.autocrlf false
-    - uses: actions/checkout@v6
-    - name: Build
-      run: |
-        D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-amd-zen4+
-        assets: python-embed*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: python-embed/*pkg*.xz
-        tag: latest-amd-zen4+
         overwrite: true
         file_glob: true
 
@@ -4437,16 +4255,10 @@ jobs:
     - uses: actions/checkout@v6
     - name: Build
       run: |
+        cd vapoursynth
+        pip download vapoursynth
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg'
     - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest-amd-zen4+
-        assets: vapoursynth*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -4455,14 +4267,6 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*pkg*.xz
-        tag: latest-amd-zen4+
-        overwrite: true
-        file_glob: true
-    - name: Upload Dev
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
