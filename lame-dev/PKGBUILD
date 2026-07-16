@@ -12,7 +12,7 @@ md5sums=('SKIP')
 build() {
   export CFLAGS="-msse2 ${CFLAGS}"
   cd $srcdir/lame-$pkgver
-  ./configure prefix=/opt --disable-shared --enable-nasm --disable-frontend
+  ./configure prefix=/opt --disable-shared --enable-nasm --disable-frontend --disable-decoder
 }
 
 package() {
