@@ -12,9 +12,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libdvdread-$pkgver
-  # conflict with libbluray
-  sed -i '1i #define dir_open_default dvdread_dir_open_default' src/file/dir_win32.c
-  sed -i '1i #define file_open_default dvdread_file_open_default' src/file/file_win32.c
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static -Dlibdvdcss=enabled
   cd work
