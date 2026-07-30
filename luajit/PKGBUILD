@@ -10,12 +10,12 @@ source=("https://github.com/LuaJIT/LuaJIT/archive/refs/heads/v2.1.zip")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/LuaJIT-2.1.ROLLING
+  cd $srcdir/LuaJIT-2.1
   make amalg BUILDMODE=dynamic
 }
 
 package_luajit-dev() {
-  cd $srcdir/LuaJIT-2.1.ROLLING
+  cd $srcdir/LuaJIT-2.1
   make DESTDIR=$pkgdir install
   mkdir -p $pkgdir/opt/lib
   mv $pkgdir/usr/local/include $pkgdir/opt
@@ -27,7 +27,7 @@ package_luajit-dev() {
 
 package_luajit() {
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/LuaJIT-2.1.ROLLING
+  cd $srcdir/LuaJIT-2.1
   mkdir -p $pkgdir/opt/bin
   mv src/lua*.exe $pkgdir/opt/bin
   mv src/lua*.dll $pkgdir/opt/bin
