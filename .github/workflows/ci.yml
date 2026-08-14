@@ -14,4 +14,4 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
-    - uses: fawazahmed0/action-debug@main
+    - uses: mxschmitt/action-tmate@v3
