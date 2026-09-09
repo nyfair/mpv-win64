@@ -154,7 +154,4 @@ package() {
   cp /ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
   rm $pkgdir/opt/bin/*minimal*
   strip $pkgdir/opt/bin/*
-
-  #simple cmake hack and wait for cmake rebuild
-  cp /ucrt64/bin/libjsoncpp-27.dll /ucrt64/bin/libjsoncpp-26.dll
 }
