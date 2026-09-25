@@ -11,9 +11,6 @@ source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
 build() {
-  curl -OL https://mirror.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-shaderc-2026.3-1-any.pkg.tar.zst
-  tar xvf *.zst
-  mv ucrt64/bin/glslc.exe /ucrt64/bin
   CARGS="--target-os=mingw32 --arch=x86_64 --disable-debug --disable-doc \
          --enable-gpl --enable-version3 --enable-nonfree --enable-zlib --pkg-config-flags=--static \
          --disable-ffplay --disable-ffprobe --enable-shared \

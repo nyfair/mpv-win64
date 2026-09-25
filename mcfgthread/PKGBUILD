@@ -146,6 +146,12 @@ build() {
   rm include/zdict.h
   rm include/zstd*
   rm lib/libzstd*
+
+  #Remove shaderc-dev
+  rm bin/libshaderc_shared.dll
+  rm -rf include/shaderc
+  rm lib/libshaderc*
+  rm lib/pkgconfig/shaderc*
 }
 
 package() {

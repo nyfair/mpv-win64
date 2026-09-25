@@ -25,7 +25,7 @@ jobs:
     - name: Make Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression git autoconf-wrapper automake-wrapper libtool mingw-w64-ucrt-x86_64-nasm mingw-w64-ucrt-x86_64-python-mako --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'pacman -Sy base-devel compression git autoconf-wrapper automake-wrapper libtool mingw-w64-ucrt-x86_64-nasm mingw-w64-ucrt-x86_64-python-mako mingw-w64-ucrt-x86_64-shaderc --noconfirm'
         C:\msys64\usr\bin\bash -lc 'pacman -Scc --noconfirm'
         xcopy /e C:\msys64 D:\msys64\
         xcopy /e /y D:\ucrt64 D:\msys64\ucrt64
