@@ -151,7 +151,6 @@ build() {
   rm bin/libshaderc_shared.dll
   rm -rf include/shaderc
   rm lib/libshaderc*
-  rm lib/pkgconfig/shaderc*
 }
 
 package() {
