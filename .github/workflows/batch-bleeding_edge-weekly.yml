@@ -368,7 +368,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -813,7 +813,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -859,7 +859,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -1444,7 +1444,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -1889,7 +1889,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -1935,7 +1935,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -2521,7 +2521,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -2966,7 +2966,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -3012,7 +3012,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -3597,7 +3597,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -4042,7 +4042,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -4088,7 +4088,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/vapoursynth-dev-81-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/freetype2-dev-2.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/fribidi-dev-1.0.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-14.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/harfbuzz-dev-15.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libass-dev-0.17.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libbluray-dev-1.5.0-1-x86_64.pkg.tar.zst
