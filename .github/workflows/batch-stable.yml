@@ -11,7 +11,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -33,7 +33,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/highway-dev-1.4.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/lcms2-dev-2.20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libjxl-dev-0.12.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-universal/libjxl-dev-0.13.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -77,7 +77,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -134,7 +134,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/ffmpeg-9.0.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mpv-0.42.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mcfgthread-20261021-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-universal/mcfgthread-20261109-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
@@ -156,7 +156,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -178,7 +178,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/highway-dev-1.4.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/lcms2-dev-2.20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libjxl-dev-0.12.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v3/libjxl-dev-0.13.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v3.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -222,7 +222,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -279,7 +279,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/ffmpeg-9.0.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mpv-0.42.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mcfgthread-20261021-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v3/mcfgthread-20261109-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
@@ -301,7 +301,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -323,7 +323,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/highway-dev-1.4.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/lcms2-dev-2.20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libjxl-dev-0.12.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-x86-64-v4/libjxl-dev-0.13.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/x86-64-v4.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -367,7 +367,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -424,7 +424,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/ffmpeg-9.0.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mpv-0.42.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mcfgthread-20261021-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-x86-64-v4/mcfgthread-20261109-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
@@ -446,7 +446,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -468,7 +468,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/highway-dev-1.4.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/lcms2-dev-2.20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libjxl-dev-0.12.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-amd-zen4+/libjxl-dev-0.13.0-1-x86_64.pkg.tar.zst
         D:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         D:\msys64\usr\bin\bash -lc 'cp /d/a/mpv-win64/mpv-win64/amd-zen4+.conf /etc/makepkg.conf; cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
@@ -512,7 +512,7 @@ jobs:
       id: cache
       with:
         path: D:\msys64
-        key: mcf_20261021_16.2.1_x64-ucrt
+        key: mcf_20261109_16.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v6
@@ -569,7 +569,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/ffmpeg-9.0.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mpv-0.42.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mcfgthread-20261021-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-amd-zen4+/mcfgthread-20261109-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         md C:\msys64\opt\bin\portable_config
         del *.xz
